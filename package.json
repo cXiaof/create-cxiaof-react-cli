@@ -1,0 +1,24 @@
+{
+  "name": "custom-config-react-cli",
+  "version": "0.1.0-alpha.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cXiaof/custom-config-react-cli.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=8"
+  },
+  "bugs": {
+    "url": "https://github.com/cXiaof/custom-config-react-cli/issues"
+  },
+  "files": [
+    "index.js"
+  ],
+  "bin": {
+    "create": "./index.js"
+  },
+  "dependencies": {
+    "child_process": "^1.0.2"
+  }
+}
