@@ -28,12 +28,12 @@ if (typeof projectName === 'undefined') {
 typescript = !!program.typescript
 
 let oraText = `使用CRA初始项目：${projectName}`
-let execCMD = `npm init react-app ${projectName}`
+let execCMD = `npx create-react-app ${projectName}`
 if (typescript) {
     oraText += '(typescript)'
     // execCMD += ' --typescript'
 }
-const spinner = ora(oraText)
+let spinner = ora(oraText)
 spinner.start()
 
 exec(execCMD, function(error) {
