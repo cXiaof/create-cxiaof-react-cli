@@ -1,1 +1,32 @@
-{}
+{
+  "template": {
+    "homepage": ".",
+    "scripts": {
+      "start": "npm run format && react-app-rewired start",
+      "s": "npm run start",
+      "build": "npm run format && react-app-rewired build",
+      "b": "npm run build",
+      "test": "npm run format && react-app-rewired test",
+      "t": "npm run test",
+      "test:coverage": "npm run format && react-app-rewired test --coverage",
+      "c": "npm run test:coverage",
+      "format": "prettier --loglevel silent --write src/**/*.js",
+      "f": "npm run format"
+    },
+    "prettier": "prettier-config-without-tab-width"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "url-search-params": "^1.1.0"
+  },
+  "devDependencies": {
+    "babel-plugin-import": "^1.13.0",
+    "customize-cra": "^0.9.1",
+    "node-sass": "^4.13.1",
+    "normalize.css": "^8.0.1",
+    "postcss-plugin-px2rem": "^0.8.1",
+    "prettier": "^1.19.1",
+    "prettier-config-without-tab-width": "^1.0.2",
+    "react-app-rewired": "^2.1.5"
+  }
+}
