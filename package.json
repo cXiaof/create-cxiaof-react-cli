@@ -12,16 +12,15 @@
   "bugs": {
     "url": "https://github.com/cXiaof/create-cxiaof-react-cli/issues"
   },
-  "files": [
-    "index.js"
-  ],
   "bin": {
-    "ccrc": "./index.js"
+    "ccrc": "./bin/index.js"
   },
   "dependencies": {
-    "chalk": "^3.0.0",
     "child_process": "^1.0.2",
     "commander": "^4.1.0",
-    "ora": "^4.0.3"
+    "fs-extra": "^8.1.0",
+    "ora": "^4.0.3",
+    "path": "^0.12.7",
+    "util": "^0.12.1"
   }
 }
