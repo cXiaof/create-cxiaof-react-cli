@@ -25,23 +25,19 @@ module.exports = async () => {
         process.exit(1)
     }
 
-    const typescript = !!program.typescript
-
     let oraText = `使用CRA初始项目：${projectName}`
     let execCMD = `npx create-react-app ${projectName}`
-    if (typescript) {
+    if (!!program.typescript) {
         oraText += '(typescript)'
         // execCMD += ' --typescript'
     }
+
     const spinner = ora(oraText)
     spinner.start()
-
-    const create = await exec(execCMD)
-    handleError(create.error, spinner)
-
-    const cd = await exec(`cd ${projectName}`)
-    handleError(cd.error, spinner)
-
+    await exec(execCMD)
+        .then(({ error }) => handleError(error, spinner))
+        .catch((error) => handleError(error, spinner))
     spinner.succeed()
+
     return projectName
 }
