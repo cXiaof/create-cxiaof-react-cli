@@ -28,7 +28,7 @@ initCRA().then(async (projectName) => {
             .then(() =>
                 console.log(
                     chalk.bgMagenta('CCRC-APP'),
-                    chalk.cyan('projectName'),
+                    chalk.cyan(projectName),
                     chalk.green('创建完成')
                 )
             )
