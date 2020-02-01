@@ -25,7 +25,7 @@ module.exports = async () => {
         process.exit(1)
     }
 
-    let oraText = `使用CRA初始项目：${projectName}`
+    let oraText = `- 使用CRA初始项目：${projectName}`
     let execCMD = `npx create-react-app ${projectName}`
     if (!!program.typescript) {
         oraText += '(typescript)'

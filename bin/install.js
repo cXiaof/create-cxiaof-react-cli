@@ -9,7 +9,7 @@ const exec = util.promisify(require('child_process').exec)
 const handleError = require('./exit')
 
 module.exports = async (projectName, templatePath) => {
-    const spinner = ora('安装其他依赖包')
+    const spinner = ora('- 安装其他依赖包')
     spinner.start()
     const { template, dependencies, devDependencies } = require(path.join(
         templatePath,
