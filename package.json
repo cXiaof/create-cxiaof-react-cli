@@ -1,6 +1,7 @@
 {
   "name": "create-cxiaof-react-cli",
   "version": "0.1.0-alpha.1",
+  "author": "cXiaof",
   "repository": {
     "type": "git",
     "url": "https://github.com/cXiaof/create-cxiaof-react-cli.git"
