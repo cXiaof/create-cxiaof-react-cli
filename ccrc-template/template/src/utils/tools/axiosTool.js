@@ -5,7 +5,7 @@ const { CancelToken } = axios
 
 axios.defaults.withCredentials = true
 
-window.configEncoded = {
+global.configEncoded = {
     baseURL: './',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     transformRequest: [
@@ -18,7 +18,7 @@ window.configEncoded = {
             ).toString()
     ]
 }
-window.configJSON = {
+global.configJSON = {
     baseURL: './',
     headers: {
         Accept: 'application/json',
@@ -35,7 +35,7 @@ class AxiosTool {
     _dealSuccess(res) {
         const { status, statusText, data } = res
         if (status && status === 200) {
-            window.response = data
+            global.response = data
             if (this.onSuccess) this.onSuccess(data)
         } else this._dealError(statusText)
         return this
