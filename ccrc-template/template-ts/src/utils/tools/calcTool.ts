@@ -1,7 +1,8 @@
 const calcTool = {
-    calcMinUint: (num1 = 1, num2 = 1) => Math.max(0, Math.min(num1, num2)),
+    calcMinUint: (num1: number = 1, num2: number = 1): number =>
+        Math.max(0, Math.min(num1, num2)),
 
-    calcGolden: (num, reverse) => {
+    calcGolden: (num: number, reverse: boolean): number => {
         const golden = calcTool.floatCHU(
             calcTool.floatJIAN(Math.sqrt(5), 1),
             2,
@@ -13,7 +14,7 @@ const calcTool = {
         )
     },
 
-    getTextWidth: (txt) => {
+    getTextWidth: (txt: string): number => {
         let result = 0
         for (let i = 0; i < txt.length; i++) {
             result += 1
@@ -24,13 +25,21 @@ const calcTool = {
         return result
     },
 
-    floatJIA: (num1 = 0, num2 = 0, fixed = 20) => {
+    floatJIA: (
+        num1: number = 0,
+        num2: number = 0,
+        fixed: number = 20
+    ): number => {
         const [m] = getJiaJianVal(num1, num2)
         const result = Math.round(num1 * m + num2 * m) / m
         return parseFloat(result.toFixed(fixed))
     },
 
-    floatJIAN: (num1 = 0, num2 = 0, fixed = 20) => {
+    floatJIAN: (
+        num1: number = 0,
+        num2: number = 0,
+        fixed: number = 20
+    ): number => {
         const [m, r1, r2] = getJiaJianVal(num1, num2)
         const result = (Math.round(num1 * m - num2 * m) / m).toFixed(
             Math.max(r1 - 0, r2 - 0)
@@ -38,7 +47,11 @@ const calcTool = {
         return parseFloat(parseFloat(result).toFixed(fixed))
     },
 
-    floatCHEN: (num1 = 0, num2 = 1, fixed = 20) => {
+    floatCHEN: (
+        num1: number = 0,
+        num2: number = 1,
+        fixed: number = 20
+    ): number => {
         let m = 0,
             s1 = num1.toString(),
             s2 = num2.toString()
@@ -54,7 +67,11 @@ const calcTool = {
         return parseFloat(result.toFixed(fixed))
     },
 
-    floatCHU: (num1 = 0, num2 = 1, fixed = 20) => {
+    floatCHU: (
+        num1: number = 0,
+        num2: number = 1,
+        fixed: number = 20
+    ): number => {
         const [t1, t2] = getDecimalLength(num1, num2)
         const r1 = Number(num1.toString().replace('.', ''))
         const r2 = Number(num2.toString().replace('.', ''))
@@ -63,13 +80,13 @@ const calcTool = {
     }
 }
 
-const getJiaJianVal = (num1, num2) => {
+const getJiaJianVal = (num1: number, num2: number): number[] => {
     const [r1, r2] = getDecimalLength(num1, num2)
     const m = Math.pow(10, Math.max(r1, r2))
     return [m, r1, r2]
 }
 
-const getDecimalLength = (num1, num2) => {
+const getDecimalLength = (num1: number, num2: number): number[] => {
     let r1, r2
     try {
         r1 = num1.toString().split('.')[1].length

@@ -1,0 +1,70 @@
+@charset "utf-8";
+
+@import 'mixin';
+
+html {
+    font-family: 'Microsoft YaHei', verdana, sans-serif;
+    font-size: #{16px * 100vh / 1080px};
+}
+
+body {
+    @include full-size;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-corner {
+    background-color: transparent;
+}
+
+@mixin scrollbar-background-color($color) {
+    background-color: transparentize($color, 0.7);
+
+    &:hover {
+        background-color: transparentize($color, 0.5);
+    }
+}
+
+::-webkit-scrollbar-track {
+    @include scrollbar-background-color($flat-silver);
+}
+
+::-webkit-scrollbar-thumb {
+    @include scrollbar-background-color($flat-asbestos);
+}
+
+video {
+    outline: none;
+}
+
+i,
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.hidden {
+    display: none;
+}
+
+.text-c {
+    text-align: center;
+}
+
+.font-b {
+    font-weight: bold;
+}
+
+#root {
+    @include full-size;
+}

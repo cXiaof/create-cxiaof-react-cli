@@ -12,8 +12,7 @@
       "c": "npm run test:coverage",
       "format": "prettier --loglevel silent --write src/**/*.js",
       "f": "npm run format"
-    },
-    "prettier": "prettier-config-without-tab-width"
+    }
   },
   "dependencies": {
     "axios": "^0.19.2",
@@ -26,7 +25,6 @@
     "normalize.css": "^8.0.1",
     "postcss-plugin-px2rem": "^0.8.1",
     "prettier": "^1.19.1",
-    "prettier-config-without-tab-width": "^1.0.2",
     "react-app-rewired": "^2.1.5"
   }
 }
