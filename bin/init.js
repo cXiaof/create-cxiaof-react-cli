@@ -16,7 +16,7 @@ module.exports = async () => {
         .arguments('<projectName>')
         .usage('<projectName> [options]')
         .action((name) => (projectName = name))
-        .option('--typescript', '使用typescript模版（暂未开发）')
+        .option('--ts', '使用typescript模版（暂未开发）')
         .allowUnknownOption()
         .parse(process.argv)
 
@@ -25,11 +25,13 @@ module.exports = async () => {
         process.exit(1)
     }
 
+    const useTS = !!program.ts
+
     let oraText = `- 使用CRA初始项目：${projectName}`
     let execCMD = `npx create-react-app ${projectName}`
-    if (!!program.typescript) {
+    if (useTS) {
         oraText += '(typescript)'
-        // execCMD += ' --typescript'
+        execCMD += ' --template typescript'
     }
 
     const spinner = ora(oraText)
@@ -39,5 +41,5 @@ module.exports = async () => {
         .catch((error) => handleError(error, spinner))
     spinner.succeed()
 
-    return projectName
+    return [projectName, useTS]
 }

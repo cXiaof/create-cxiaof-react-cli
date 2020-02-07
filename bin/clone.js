@@ -7,13 +7,18 @@ const chalk = require('chalk')
 
 const handleError = require('./exit')
 
-module.exports = async (directory) => {
+module.exports = async (directory, useTS) => {
     const spinner = ora('- 克隆CCRC模版')
     spinner.start()
-    const templatePath = path.join(__dirname, '..', 'ccrc-template')
+
+    let folder = 'ccrc-template'
+    if (useTS) folder += '-ts'
+
+    const templatePath = path.join(__dirname, '..', folder)
     await fs.copy(path.join(templatePath, 'template'), directory, (error) =>
         handleError(error, spinner)
     )
+
     spinner.succeed()
     return templatePath
 }

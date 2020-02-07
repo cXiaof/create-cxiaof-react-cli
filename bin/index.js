@@ -11,7 +11,7 @@ const cloneTemplate = require('./clone')
 const installPackage = require('./install')
 const handleError = require('./exit')
 
-initCRA().then(async (projectName) => {
+initCRA().then(async ([projectName, useTS]) => {
     const spinner = ora('- 清理默认模版')
     spinner.start()
     const directory = path.join(projectName)
@@ -23,7 +23,7 @@ initCRA().then(async (projectName) => {
     )
     setTimeout(() => {
         spinner.succeed()
-        cloneTemplate(directory)
+        cloneTemplate(directory, useTS)
             .then((templatePath) => installPackage(projectName, templatePath))
             .then(() =>
                 console.log(
