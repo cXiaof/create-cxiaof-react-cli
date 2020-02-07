@@ -25,12 +25,17 @@ initCRA().then(async ([projectName, useTS]) => {
         spinner.succeed()
         cloneTemplate(directory, useTS)
             .then((templatePath) => installPackage(projectName, templatePath))
-            .then(() =>
+            .then(() => {
                 console.log(
                     chalk.bgMagenta('CCRC-APP'),
-                    chalk.cyan(projectName),
-                    chalk.green('创建完成')
+                    chalk.green('创建完成✔')
                 )
-            )
+                console.log(
+                    chalk.yellow('快速开始:'),
+                    chalk.magenta('cd'),
+                    chalk.cyan(projectName),
+                    chalk.magenta('& yarn s')
+                )
+            })
     }, 1000)
 })

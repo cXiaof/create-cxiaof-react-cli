@@ -11,11 +11,10 @@ module.exports = async (directory, useTS) => {
     const spinner = ora('- 克隆CCRC模版')
     spinner.start()
 
-    let folder = 'ccrc-template'
+    const templatePath = path.join(__dirname, '..', 'ccrc-template')
+    let folder = 'template'
     if (useTS) folder += '-ts'
-
-    const templatePath = path.join(__dirname, '..', folder)
-    await fs.copy(path.join(templatePath, 'template'), directory, (error) =>
+    await fs.copy(path.join(templatePath, folder), directory, (error) =>
         handleError(error, spinner)
     )
 

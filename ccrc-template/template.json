@@ -10,7 +10,7 @@
       "t": "npm run test",
       "test:coverage": "npm run format && react-app-rewired test --coverage",
       "c": "npm run test:coverage",
-      "format": "prettier --loglevel silent --write src/**/*.js",
+      "format": "prettier --loglevel silent --write {src,public}/**/*.{html,css,scss,js,jsx,ts,tsx}",
       "f": "npm run format"
     }
   },
