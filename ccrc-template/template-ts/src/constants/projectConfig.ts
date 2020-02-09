@@ -3,7 +3,7 @@ global.debug = process.env.NODE_ENV === 'development'
 
 document.oncontextmenu = () => false
 
-const resizeTextSize = () => {
+const resizeTextSize = (): void => {
     const { clientHeight } = document.documentElement
     const scale: number = Math.max(1, clientHeight / 1080)
     const fontSize: number = ~~(16 * scale)
@@ -14,9 +14,9 @@ const resizeTextSize = () => {
 }
 resizeTextSize()
 
-global.getTextSize = (px: number) => ~~((px * global.fontSize) / 16)
+global.getTextSize = (px: number): number => ~~((px * global.fontSize) / 16)
 
-global.onresize = () => {
+global.onresize = (): void => {
     resizeTextSize()
 }
 
