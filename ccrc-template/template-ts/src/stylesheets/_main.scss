@@ -28,20 +28,15 @@ body {
     background-color: transparent;
 }
 
-@mixin scrollbar-background-color($color) {
-    background-color: transparentize($color, 0.7);
-
-    &:hover {
-        background-color: transparentize($color, 0.5);
-    }
-}
-
 ::-webkit-scrollbar-track {
-    @include scrollbar-background-color($flat-silver);
+    background-color: transparentize($flat-asbestos, 0.7);
 }
 
 ::-webkit-scrollbar-thumb {
-    @include scrollbar-background-color($flat-asbestos);
+    background-color: transparentize($flat-silver, 0.7);
+    &:hover {
+        background-color: transparentize($flat-silver, 0.5);
+    }
 }
 
 video {
