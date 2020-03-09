@@ -34,7 +34,7 @@ initCRA().then(async ([projectName, useTS]) => {
                     chalk.yellow('快速开始:'),
                     chalk.magenta('cd'),
                     chalk.cyan(projectName),
-                    chalk.magenta('& yarn s')
+                    chalk.magenta('&& yarn s')
                 )
             })
     }, 1000)
