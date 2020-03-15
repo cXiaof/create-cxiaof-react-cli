@@ -5,20 +5,22 @@ const { CancelToken } = axios
 
 axios.defaults.withCredentials = true
 
-global.configEncoded = {
+const configDefaultForm = {
     baseURL: './',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
     transformRequest: [
-        (data) =>
-            new URLSearchParams(
+        (data) => {
+            if (!data) return data
+            return new URLSearchParams(
                 Object.entries(data).map(([key, value]) => [
                     key,
                     typeof value === 'object' ? JSON.stringify(value) : value
                 ])
             ).toString()
+        }
     ]
 }
-global.configJSON = {
+const configDefaultJSON = {
     baseURL: './',
     headers: {
         Accept: 'application/json',
@@ -53,6 +55,16 @@ class AxiosTool {
             method,
             cancelToken: new CancelToken((c) => (this.cancelToken = c))
         }
+    }
+
+    useForm() {
+        this.options = { ...configDefaultForm, ...this.options }
+        return this
+    }
+
+    useJSON() {
+        this.options = { ...configDefaultJSON, ...this.options }
+        return this
     }
 
     success(onSuccess = () => false) {

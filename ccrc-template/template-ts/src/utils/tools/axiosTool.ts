@@ -6,7 +6,7 @@ import axios, {
     Method
 } from 'axios'
 
-axios.defaults.baseURL = `${document.location.protocol}//47.113.82.158/api/`
+axios.defaults.baseURL = './'
 axios.defaults.headers.post = {
     Accept: 'application/json',
     'Content-Type': 'application/json;charset=UTF-8'
