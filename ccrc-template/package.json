@@ -2,6 +2,7 @@
   "name": "ccrc-template",
   "version": "0.1.0-beta.2",
   "main": "template.json",
+  "author": "cXiaof",
   "repository": {
     "type": "git",
     "url": "https://github.com/facebook/create-react-app.git",
