@@ -57,14 +57,23 @@ class AxiosTool {
         }
     }
 
-    useForm() {
-        this.options = { ...configDefaultForm, ...this.options }
+    _packageOptions(configDefault) {
+        const options = { ...configDefault, ...this.options }
+        if (this.options.headers)
+            options.headers = {
+                ...configDefault.headers,
+                ...this.options.headers
+            }
+        this.options = options
         return this
     }
 
+    useForm() {
+        return this._packageOptions(configDefaultForm)
+    }
+
     useJSON() {
-        this.options = { ...configDefaultJSON, ...this.options }
-        return this
+        return this._packageOptions(configDefaultJSON)
     }
 
     success(onSuccess = () => false) {
