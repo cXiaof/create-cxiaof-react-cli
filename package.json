@@ -1,6 +1,6 @@
 {
   "name": "create-cxiaof-react-cli",
-  "version": "0.1.0-beta.3",
+  "version": "0.1.0-beta.4",
   "author": "cXiaof",
   "repository": {
     "type": "git",
@@ -24,5 +24,11 @@
     "ora": "^4.0.3",
     "path": "^0.12.7",
     "util": "^0.12.2"
+  },
+  "devDependencies": {
+    "prettier": "^2.0.2"
+  },
+  "scripts": {
+    "prepublish": "prettier --write {bin,ccrc-template}/**/*.{html,css,scss,js,jsx,ts,tsx}"
   }
 }

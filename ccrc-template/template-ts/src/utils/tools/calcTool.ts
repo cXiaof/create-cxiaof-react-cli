@@ -77,7 +77,7 @@ const calcTool = {
         const r2 = Number(num2.toString().replace('.', ''))
         const result = (r1 / r2) * Math.pow(10, t2 - t1)
         return parseFloat(result.toFixed(fixed))
-    }
+    },
 }
 
 const getJiaJianVal = (num1: number, num2: number): number[] => {

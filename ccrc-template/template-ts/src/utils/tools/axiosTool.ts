@@ -3,13 +3,13 @@ import axios, {
     Canceler,
     AxiosResponse,
     AxiosError,
-    Method
+    Method,
 } from 'axios'
 
 axios.defaults.baseURL = './'
 axios.defaults.headers.post = {
     Accept: 'application/json',
-    'Content-Type': 'application/json;charset=UTF-8'
+    'Content-Type': 'application/json;charset=UTF-8',
 }
 axios.defaults.transformRequest = [JSON.stringify]
 axios.defaults.withCredentials = true
@@ -45,7 +45,7 @@ class AxiosTool {
         return {
             ...this.options,
             method,
-            cancelToken: new axios.CancelToken((c) => (this.canceler = c))
+            cancelToken: new axios.CancelToken((c) => (this.canceler = c)),
         }
     }
 

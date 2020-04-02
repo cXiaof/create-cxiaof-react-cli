@@ -14,19 +14,19 @@ const configDefaultForm = {
             return new URLSearchParams(
                 Object.entries(data).map(([key, value]) => [
                     key,
-                    typeof value === 'object' ? JSON.stringify(value) : value
+                    typeof value === 'object' ? JSON.stringify(value) : value,
                 ])
             ).toString()
-        }
-    ]
+        },
+    ],
 }
 const configDefaultJSON = {
     baseURL: './',
     headers: {
         Accept: 'application/json',
-        'Content-Type': 'application/json;charset=UTF-8'
+        'Content-Type': 'application/json;charset=UTF-8',
     },
-    transformRequest: [JSON.stringify]
+    transformRequest: [JSON.stringify],
 }
 
 class AxiosTool {
@@ -53,7 +53,7 @@ class AxiosTool {
         return {
             ...this.options,
             method,
-            cancelToken: new CancelToken((c) => (this.cancelToken = c))
+            cancelToken: new CancelToken((c) => (this.cancelToken = c)),
         }
     }
 
@@ -62,7 +62,7 @@ class AxiosTool {
         if (this.options.headers)
             options.headers = {
                 ...configDefault.headers,
-                ...this.options.headers
+                ...this.options.headers,
             }
         this.options = options
         return this

@@ -14,7 +14,7 @@ module.exports = override(
             // ignoreIdentifier: false,
             // replace: true,
             // mediaQuery: false,
-            minPixelValue: 3
-        })
+            minPixelValue: 3,
+        }),
     ])
 )
