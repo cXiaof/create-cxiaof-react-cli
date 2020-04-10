@@ -2,14 +2,15 @@
   "template": {
     "homepage": ".",
     "scripts": {
-      "start": "npm run format && npm run s",
-      "s": "react-app-rewired start",
-      "build": "npm run format && npm run b",
-      "b": "react-app-rewired build",
-      "test": "npm run format && npm run t",
-      "t": "react-app-rewired test",
-      "test:coverage": "npm run format && npm run c",
-      "c": "react-app-rewired test --coverage",
+      "prepublish": "npm run format",
+      "start": "react-app-rewired start",
+      "s": "npm run start",
+      "build": "react-app-rewired build",
+      "b": "npm run build",
+      "test": "react-app-rewired test",
+      "t": "npm run test",
+      "test:coverage": "react-app-rewired test --coverage",
+      "c": "npm run test:coverage",
       "format": "prettier --loglevel silent --write {src,public}/**/*.{html,css,scss,js,jsx,ts,tsx}",
       "f": "npm run format"
     }
@@ -24,7 +25,7 @@
     "node-sass": "^4.13.1",
     "normalize.css": "^8.0.1",
     "postcss-plugin-px2rem": "^0.8.1",
-    "prettier": "^2.0.2",
+    "prettier": "^2.0.4",
     "react-app-rewired": "^2.1.5"
   }
 }
