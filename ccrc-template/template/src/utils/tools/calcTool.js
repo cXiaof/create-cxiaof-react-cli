@@ -1,15 +1,18 @@
 import NP from 'number-precision'
 
-global.GoldenSection = NP.round(NP.divide(NP.minus(Math.sqrt(5), 1), 2), 3)
+NP.enableBoundaryChecking(false)
 
 const calcTool = {
     calcMinUint: (num1 = 1, num2 = 1) => Math.max(0, Math.min(num1, num2)),
 
+    calcAverage: (...args) =>
+        calcTool.floatCHU(calcTool.floatJIA(...args), args.length),
+
     calcGolden: (num, reverse) => {
-        const divisor = reverse
-            ? NP.minus(1, global.GoldenSection)
-            : global.GoldenSection
-        return NP.times(num, divisor)
+        const gsa = calcTool.floatCHU(calcTool.floatJIAN(Math.sqrt(5), 1), 2)
+        const golden = calcTool.floatRound(gsa, 3)
+        const divisor = reverse ? calcTool.floatJIAN(1, golden) : golden
+        return calcTool.floatCHEN(num, divisor)
     },
 
     getTextWidth: (txt) => {
@@ -22,6 +25,18 @@ const calcTool = {
         }
         return result
     },
+
+    floatJIA: (...args) => NP.plus(...args),
+
+    floatJIAN: (...args) => NP.minus(...args),
+
+    floatCHEN: (...args) => NP.times(...args),
+
+    floatCHU: (...args) => NP.divide(...args),
+
+    floatFix: (num) => NP.strip(num),
+
+    floatRound: (num, ratio = 1) => NP.round(num, ratio),
 }
 
 export default calcTool
