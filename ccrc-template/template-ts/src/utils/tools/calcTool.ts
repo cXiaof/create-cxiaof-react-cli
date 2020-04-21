@@ -6,6 +6,12 @@ const calcTool = {
     calcMinUint: (num1: number = 1, num2: number = 1): number =>
         Math.max(0, Math.min(num1, num2)),
 
+    calcAverage: (arr: number[], ratio: number = 20): number =>
+        calcTool.floatRound(
+            calcTool.floatCHU(calcTool.floatJIA(...arr), arr.length),
+            ratio
+        ),
+
     calcGolden: (num: number, reverse: boolean): number => {
         const gsa = calcTool.floatCHU(calcTool.floatJIAN(Math.sqrt(5), 1), 2)
         const golden = calcTool.floatRound(gsa, 3)

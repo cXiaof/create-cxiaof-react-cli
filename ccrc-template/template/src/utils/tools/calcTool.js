@@ -5,8 +5,11 @@ NP.enableBoundaryChecking(false)
 const calcTool = {
     calcMinUint: (num1 = 1, num2 = 1) => Math.max(0, Math.min(num1, num2)),
 
-    calcAverage: (...args) =>
-        calcTool.floatCHU(calcTool.floatJIA(...args), args.length),
+    calcAverage: (arr, ratio = 20) =>
+        calcTool.floatRound(
+            calcTool.floatCHU(calcTool.floatJIA(...arr), arr.length),
+            ratio
+        ),
 
     calcGolden: (num, reverse) => {
         const gsa = calcTool.floatCHU(calcTool.floatJIAN(Math.sqrt(5), 1), 2)
