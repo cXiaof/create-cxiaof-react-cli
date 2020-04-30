@@ -2,7 +2,6 @@
   "template": {
     "homepage": ".",
     "scripts": {
-      "prepublish": "npm run format",
       "start": "react-app-rewired start",
       "s": "npm run start",
       "build": "react-app-rewired build",
