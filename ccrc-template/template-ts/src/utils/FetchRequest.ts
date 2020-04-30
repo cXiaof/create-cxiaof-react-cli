@@ -3,7 +3,6 @@ import request, {
     Canceler,
     RequestMethod,
 } from 'umi-request'
-import URLSearchParams from 'url-search-params'
 
 const { CancelToken } = request
 
