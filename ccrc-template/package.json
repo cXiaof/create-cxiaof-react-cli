@@ -3,14 +3,9 @@
   "version": "0.1.0-beta.6",
   "main": "template.json",
   "author": "cXiaof",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/facebook/create-react-app.git",
-    "directory": "ccrc-template"
-  },
   "license": "MIT",
   "engines": {
-    "node": ">=8"
+    "node": ">=12"
   },
   "bugs": {
     "url": "https://github.com/cXiaof/create-cxiaof-react-cli/issues"
