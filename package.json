@@ -23,7 +23,7 @@
     "fs-extra": "^9.0.0",
     "ora": "^4.0.4",
     "path": "^0.12.7",
-    "util": "^0.12.2"
+    "util": "^0.12.3"
   },
   "devDependencies": {
     "prettier": "^2.0.5"

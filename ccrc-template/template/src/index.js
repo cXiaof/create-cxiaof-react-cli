@@ -1,10 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import './constants/projectConfig'
+import '#/projectConfig'
+
 import './stylesheets/styles.scss'
 
-import App from './components/App/App'
+import App from '@/App/App'
 
 import * as serviceWorker from './serviceWorker'
 
