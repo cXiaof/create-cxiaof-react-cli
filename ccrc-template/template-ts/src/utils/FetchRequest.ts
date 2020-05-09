@@ -20,7 +20,7 @@ request.interceptors.request.use((url: string, options: RequestOptionsInit) => {
 export default class {
     url: string
     options: RequestOptionsInit
-    needToken: boolean
+    fetching: boolean
     canceler: Canceler
     onSuccess?: any
     onError?: any
@@ -28,12 +28,7 @@ export default class {
     constructor(url: string, options: RequestOptionsInit = {}) {
         this.url = url
         this.options = options
-        this.needToken = true
-    }
-
-    noToken() {
-        this.needToken = false
-        return this
+        this.fetching = false
     }
 
     fetch(method: RequestMethod, requestType: string) {
@@ -49,15 +44,15 @@ export default class {
         this.options.requestType = requestType
         this.options.cancelToken = token
         this.canceler = cancel
-        if (this.needToken) {
-            const Tingtoken = sessionStorage.getItem('Tingtoken')
-            if (Tingtoken) this.options.headers = { Tingtoken }
-        }
+        this.fetching = true
         return request(this.url, this.options)
     }
 
     cancel(msg?: string) {
-        if (this.canceler) this.canceler(msg)
+        if (this.canceler && this.fetching) {
+            this.fetching = false
+            this.canceler(msg)
+        }
         return this
     }
 
@@ -72,10 +67,12 @@ export default class {
     }
 
     _dealSuccess(data: any) {
+        this.fetching = false
         if (this.onSuccess) this.onSuccess(data)
     }
 
     _dealError(error: any) {
+        this.fetching = false
         console.error(error, this.options)
         if (this.onError) this.onError(error, this.options)
     }
