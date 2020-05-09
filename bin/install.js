@@ -16,11 +16,6 @@ module.exports = async (projectName, templatePath) => {
         'template.json'
     ))
 
-    const packagePath = path.join(projectName, 'package.json')
-    let packageJson = await fs.readJson(packagePath)
-    packageJson = { ...packageJson, ...template }
-    await fs.writeFile(packagePath, JSON.stringify(packageJson, null, 2))
-
     const options = { cwd: projectName }
     await exec(getPackagesStr(dependencies), options)
         .then(({ error }) => handleError(error, spinner))
@@ -28,6 +23,11 @@ module.exports = async (projectName, templatePath) => {
     await exec(getPackagesStr(devDependencies, ' -D'), options)
         .then(({ error }) => handleError(error, spinner))
         .catch((error) => handleError(error, spinner))
+
+    const packagePath = path.join(projectName, 'package.json')
+    let packageJson = await fs.readJson(packagePath)
+    packageJson = { ...packageJson, ...template }
+    await fs.writeFile(packagePath, JSON.stringify(packageJson, null, 2))
 
     spinner.succeed()
 }
