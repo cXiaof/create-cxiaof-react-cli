@@ -1,4 +1,5 @@
 {
+  "extends": "./tsconfig.extend.json",
   "compilerOptions": {
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -13,16 +14,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
-    "baseUrl": "./",
-    "paths": {
-      "^/*": ["src/assets/*"],
-      "@/*": ["src/components/*"],
-      "#/*": ["src/constants/*"],
-      "~/*": ["src/utils/*"],
-      "~tools/*": ["src/utils/tools/*"]
-    }
+    "jsx": "react"
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "include": ["src"]
 }

@@ -4,13 +4,13 @@
     "author": "cXiaof",
     "scripts": {
       "prepublish": "npm run format",
-      "start": "react-app-rewired start",
+      "start": "craco start",
       "s": "npm run start",
-      "build": "react-app-rewired build",
-      "b": "npm run build",
-      "test": "react-app-rewired test",
+      "build": "craco build",
+      "b": "npm run build && gulp",
+      "test": "craco test",
       "t": "npm run test",
-      "test:coverage": "react-app-rewired test --coverage",
+      "test:coverage": "craco test --coverage",
       "c": "npm run test:coverage",
       "format": "prettier --loglevel silent --write {src,public}/**/*.{html,css,scss,js,jsx,ts,tsx}",
       "f": "npm run format"
@@ -21,12 +21,11 @@
     "umi-request": "^1.2.19"
   },
   "devDependencies": {
-    "babel-plugin-import": "^1.13.0",
-    "customize-cra": "^0.9.1",
-    "node-sass": "^4.14.0",
+    "@craco/craco": "^5.6.4",
+    "craco-alias": "^2.1.1",
+    "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
     "postcss-plugin-px2rem": "^0.8.1",
-    "prettier": "^2.0.5",
-    "react-app-rewired": "^2.1.5"
+    "prettier": "^2.0.5"
   }
 }
