@@ -14,7 +14,7 @@ const resizeTextSize = () => {
 }
 resizeTextSize()
 
-global.getTextSize = (px) => ~~((px * global.fontSize) / 16)
+global.getTextSize = (px = 16) => ~~((px * global.fontSize) / 16)
 
 window.onresize = () => {
     resizeTextSize()
