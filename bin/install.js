@@ -23,17 +23,28 @@ module.exports = async (projectName, templatePath) => {
     await exec(getPackagesStr(devDependencies, ' -D'), options)
         .then(({ error }) => handleError(error, spinner))
         .catch((error) => handleError(error, spinner))
-
-    const packagePath = path.join(projectName, 'package.json')
-    let packageJson = await fs.readJson(packagePath)
-    packageJson = { ...packageJson, ...template }
-    await fs.writeFile(packagePath, JSON.stringify(packageJson, null, 2))
+    await updatePackageJson(template, projectName)
 
     spinner.succeed()
 }
 
-const getPackagesStr = (obj, arg = '') =>
-    Object.keys(obj).reduce((target, name) => {
+const getPackagesStr = (obj, arg = '') => {
+    return Object.keys(obj).reduce((target, name) => {
         target += ` ${name}`
         return target
     }, `yarn add${arg}`)
+}
+
+const updatePackageJson = async (template, projectName) => {
+    const packagePath = path.join(projectName, 'package.json')
+    const packageJson = await fs.readJson(packagePath)
+    let result = {}
+    for (let key in packageJson) {
+        if (key === 'devDependencies') continue
+        if (key === 'dependencies') {
+            const { dependencies, devDependencies } = packageJson
+            result = { ...result, ...template, dependencies, devDependencies }
+        } else result[key] = packageJson[key]
+    }
+    await fs.writeFile(packagePath, JSON.stringify(result, null, 2))
+}

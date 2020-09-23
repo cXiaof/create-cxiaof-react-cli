@@ -3,7 +3,6 @@
 const ora = require('ora')
 const path = require('path')
 const fs = require('fs-extra')
-const chalk = require('chalk')
 
 const handleError = require('./exit')
 
