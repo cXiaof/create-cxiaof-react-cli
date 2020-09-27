@@ -39,8 +39,9 @@ const updatePackageJson = async (template, projectName) => {
     const packagePath = path.join(projectName, 'package.json')
     const packageJson = await fs.readJson(packagePath)
     let result = {}
+    const continueArr = ['scripts', 'devDependencies']
     for (let key in packageJson) {
-        if (key === 'devDependencies') continue
+        if (continueArr.includes(key)) continue
         if (key === 'dependencies') {
             const { dependencies, devDependencies } = packageJson
             result = { ...result, ...template, dependencies, devDependencies }
