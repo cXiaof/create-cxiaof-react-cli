@@ -1,5 +1,7 @@
 import React from 'react'
 
-const App = () => <div className='App'>App</div>
+const App = React.memo(() => {
+    return <div className='App'>App</div>
+})
 
 export default App

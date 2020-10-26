@@ -11,13 +11,10 @@ const packageJson = require('../package.json')
 
 module.exports = async () => {
     let projectName
-    const program = new commander.Command(packageJson.name)
+    new commander.Command(packageJson.name)
         .version(packageJson.version)
         .arguments('<projectName>')
-        .usage('<projectName> [options]')
         .action((name) => (projectName = name))
-        .option('--ts', '使用typescript模版（暂未开发）')
-        .allowUnknownOption()
         .parse(process.argv)
 
     if (typeof projectName === 'undefined') {
@@ -25,21 +22,12 @@ module.exports = async () => {
         process.exit(1)
     }
 
-    const useTS = !!program.ts
-
-    let oraText = `- 使用CRA初始项目：${projectName}`
-    let execCMD = `npx create-react-app ${projectName}`
-    if (useTS) {
-        oraText += '(typescript)'
-        execCMD += ' --template typescript'
-    }
-
-    const spinner = ora(oraText)
+    const spinner = ora(`- 使用CRA初始项目：${projectName}`)
     spinner.start()
-    await exec(execCMD)
+    await exec(`npx create-react-app ${projectName}`)
         .then(({ error }) => handleError(error, spinner))
         .catch((error) => handleError(error, spinner))
     spinner.succeed()
 
-    return [projectName, useTS]
+    return projectName
 }

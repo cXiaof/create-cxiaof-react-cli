@@ -3,7 +3,7 @@
     "homepage": ".",
     "author": "cXiaof",
     "scripts": {
-      "prepublish": "prettier --loglevel silent --write src/**/*.{html,css,scss,js,jsx,ts,tsx}",
+      "prepublish": "prettier --loglevel silent --write src/**/*.{html,css,scss,js,jsx}",
       "start": "craco start",
       "s": "npm run start",
       "build": "craco build",
@@ -12,7 +12,7 @@
       "t": "npm run test",
       "test:coverage": "craco test --coverage",
       "c": "npm run test:coverage",
-      "format": "prettier --loglevel silent --write {src,public}/**/*.{html,css,scss,js,jsx,ts,tsx}",
+      "format": "prettier --loglevel silent --write {src,public}/**/*.{html,css,scss,js,jsx}",
       "f": "npm run format"
     }
   },

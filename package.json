@@ -1,6 +1,6 @@
 {
   "name": "create-cxiaof-react-cli",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "author": "cXiaof",
   "repository": {
     "type": "git",
@@ -29,7 +29,7 @@
     "prettier": "^2.1.2"
   },
   "scripts": {
-    "format": "prettier --loglevel silent --write {bin,ccrc-template}/**/*.{html,css,scss,js,jsx,ts,tsx}",
+    "format": "prettier --loglevel silent --write {bin,ccrc-template}/**/*.{html,css,scss,js}",
     "f": "npm run format"
   }
 }
