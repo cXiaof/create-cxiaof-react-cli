@@ -29,8 +29,8 @@ module.exports = async (projectName, templatePath) => {
 }
 
 const getPackagesStr = (obj, arg = '') => {
-    return Object.keys(obj).reduce((target, name) => {
-        target += ` ${name}`
+    return Object.entries(obj).reduce((target, [name, version]) => {
+        target += ` ${name}@${version}`
         return target
     }, `yarn add${arg}`)
 }
