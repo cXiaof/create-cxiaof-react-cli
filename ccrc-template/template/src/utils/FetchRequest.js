@@ -13,7 +13,7 @@ request.interceptors.request.use((url, options) => {
     return { url, options }
 })
 
-export default class {
+class FetchRequest {
     constructor(url, options = {}) {
         this.url = url
         this.options = options
@@ -66,3 +66,5 @@ export default class {
         if (this.onError) this.onError(error, this.options)
     }
 }
+
+export default FetchRequest
