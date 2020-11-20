@@ -14,7 +14,6 @@
 
 @mixin all-relative() {
     position: relative;
-
     * {
         position: relative;
     }
@@ -51,9 +50,12 @@
 }
 
 @mixin overlay() {
-    @include clickable;
-    @include full-size;
     position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 99;
+    background-color: transparentize(black, 0.4);
+    color: white;
 }
 
 @mixin text-overflow() {
@@ -65,6 +67,11 @@
 @mixin text-break() {
     word-break: break-all;
     word-wrap: break-word;
+}
+
+@mixin text-spacing($size) {
+    letter-spacing: $size;
+    padding-left: $size;
 }
 
 @mixin common-transition() {
@@ -154,12 +161,10 @@
 
 @mixin flex-map($first, $last) {
     @include flex;
-
     > * {
         &:first-child {
             flex: $first;
         }
-
         &:last-child {
             flex: $last;
         }

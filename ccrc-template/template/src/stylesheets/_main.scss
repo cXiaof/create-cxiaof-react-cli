@@ -2,10 +2,6 @@
 
 @import 'mixin';
 
-body {
-    @include full-size;
-}
-
 * {
     box-sizing: border-box;
     margin: 0;
