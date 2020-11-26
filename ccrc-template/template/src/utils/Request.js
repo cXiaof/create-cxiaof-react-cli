@@ -1,8 +1,6 @@
 import umiRequest, { extend } from 'umi-request'
 
-const request = extend({
-    // prefix: '/cdcs',
-})
+let request = extend({})
 
 // request.interceptors.request.use((url, options) => {
 //     if (options.data && options.requestType === 'form')

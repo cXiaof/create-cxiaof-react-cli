@@ -39,7 +39,6 @@ npm unlink --force
 .
 ├─.editorconfig                             // 编辑器代码规范插件'EditorConfig'配置
 ├─.gitignore                                // git忽略同步的文件及目录
-├─.npmrc                                    // npm镜像地址配置
 ├─.prettierrc                               // js代码规范插件'prettier'配置
 ├─LICENSE                                   // LICENSE文件
 ├─package.json                              // packageJSON
