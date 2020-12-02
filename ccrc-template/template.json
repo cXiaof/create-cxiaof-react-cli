@@ -17,7 +17,7 @@
     }
   },
   "dependencies": {
-    "@umijs/hooks": "^1.9.3",
+    "ahooks": "^2.9.1",
     "classnames": "^2.2.6",
     "lodash": "^4.17.20",
     "number-precision": "^1.5.0",
@@ -29,6 +29,6 @@
     "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
     "postcss-plugin-px2rem": "^0.8.1",
-    "prettier": "^2.2.0"
+    "prettier": "^2.2.1"
   }
 }
