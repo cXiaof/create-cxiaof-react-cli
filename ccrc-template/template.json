@@ -17,14 +17,14 @@
     }
   },
   "dependencies": {
-    "ahooks": "^2.9.1",
+    "ahooks": "^2.9.2",
     "classnames": "^2.2.6",
     "lodash": "^4.17.20",
     "number-precision": "^1.5.0",
     "umi-request": "^1.3.5"
   },
   "devDependencies": {
-    "@craco/craco": "^5.8.0",
+    "@craco/craco": "^6.0.0",
     "craco-alias": "^2.1.1",
     "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
