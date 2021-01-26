@@ -112,6 +112,10 @@
     grid-template-columns: repeat($num, 1fr);
 }
 
+@mixin grid-rows($num) {
+    grid-template-rows: repeat($num, 1fr);
+}
+
 @mixin flex() {
     display: flex;
 }
@@ -121,6 +125,7 @@
 }
 
 @mixin flex-v() {
+    display: flex;
     flex-direction: column;
 }
 
@@ -150,6 +155,12 @@
 
 @mixin flex-cc() {
     @include flex;
+    @include flex-align-c;
+    @include flex-justify-c;
+}
+
+@mixin flex-vcc() {
+    @include flex-v;
     @include flex-align-c;
     @include flex-justify-c;
 }
