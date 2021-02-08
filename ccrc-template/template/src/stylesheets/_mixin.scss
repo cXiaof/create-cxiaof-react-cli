@@ -165,6 +165,12 @@
     @include flex-justify-c;
 }
 
+@mixin inline-flex-cc() {
+    @include inline-flex;
+    @include flex-align-c;
+    @include flex-justify-c;
+}
+
 @mixin flex-wrap() {
     @include flex;
     @include flex-wrap-w;
