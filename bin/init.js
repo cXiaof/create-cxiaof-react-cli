@@ -11,12 +11,16 @@ const packageJson = require('../package.json')
 
 module.exports = async () => {
     let projectName
-    const program = new commander.Command(packageJson.name)
+    let useTS
+    new commander.Command(packageJson.name)
         .version(packageJson.version)
-        .usage('<projectName> [options]')
-        .action((name) => (projectName = name))
-        .option('--ts', '使用typescript模版')
+        .arguments('<projectName>')
+        .option('-ts, --typescript', '使用typescript模版')
         .allowUnknownOption()
+        .action((name, options) => {
+            projectName = name
+            useTS = options.typescript
+        })
         .parse(process.argv)
 
     if (typeof projectName === 'undefined') {
@@ -24,12 +28,10 @@ module.exports = async () => {
         process.exit(1)
     }
 
-    const useTS = !!program.ts
-
     let oraText = `- 使用CRA初始项目：${projectName}`
     let execCMD = `npx create-react-app ${projectName}`
     if (useTS) {
-        oraText += '(typescript)'
+        oraText += ' (typescript)'
         execCMD += ' --template typescript'
     }
     const spinner = ora(oraText)

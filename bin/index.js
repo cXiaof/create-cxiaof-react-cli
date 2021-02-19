@@ -28,7 +28,13 @@ initCRA().then(async ([projectName, useTS]) => {
             .then(() => {
                 console.log(
                     chalk.bgMagenta('CCRC-APP'),
-                    chalk.green('创建完成✔')
+                    chalk.green('创建完毕√')
+                )
+                console.log(
+                    chalk.yellow('检查更新:'),
+                    chalk.magenta('cd'),
+                    chalk.cyan(projectName),
+                    chalk.magenta('&& yarn outdated')
                 )
                 console.log(
                     chalk.yellow('快速开始:'),
