@@ -8,9 +8,22 @@ ccrc 自用 react 脚手架
 
 ### create app by ccrc
 
+install
+
 ```shell
+# use npm
 npm install -g create-cxiaof-react-cli
-ccrc your-project-name
+# use yarn
+yarn global add create-cxiaof-react-cli
+```
+
+create
+
+```shell
+# use javascript
+ccrc project
+# use typescript
+ccrc project --ts
 ```
 
 ## develop cli
@@ -49,6 +62,8 @@ npm unlink --force
 |  └...                                     //
 |
 └─ccrc-template                             // 模版目录
-   └─template                               // 模版
-       └...                                 //
+   ├─template                               // javascript模版
+   |  └...                                  //
+   └─template-ts                            // typescript模版
+      └...                                  //
 ```

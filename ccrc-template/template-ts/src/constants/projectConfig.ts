@@ -1,6 +1,6 @@
 window.debug = process.env.NODE_ENV === 'development'
 
-document.oncontextmenu = () => false
+document.oncontextmenu = () => null
 
 const resizeTextSize = () => {
     const { clientWidth, clientHeight } = document.documentElement
@@ -14,8 +14,10 @@ const resizeTextSize = () => {
 }
 resizeTextSize()
 
-window.getTextSize = (px = 16) => ~~((px * window.fontSize) / 16)
+window.getTextSize = (px: number = 16) => ~~((px * window.fontSize) / 16)
 
 window.onresize = () => {
     resizeTextSize()
 }
+
+export {}

@@ -1,0 +1,189 @@
+@charset "utf-8";
+
+@import 'colors';
+
+@mixin clickable() {
+    pointer-events: auto;
+    user-select: auto;
+}
+
+@mixin clickdisable() {
+    pointer-events: none;
+    user-select: none;
+}
+
+@mixin all-relative() {
+    position: relative;
+    * {
+        position: relative;
+    }
+}
+
+@mixin ATL() {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+@mixin ATR() {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+@mixin ABL() {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+@mixin ABR() {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+@mixin full-size() {
+    @include ATL;
+    height: 100%;
+    width: 100%;
+}
+
+@mixin overlay() {
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    z-index: 99;
+    background-color: transparentize(black, 0.4);
+    color: white;
+}
+
+@mixin text-overflow() {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin text-break() {
+    word-break: break-all;
+    word-wrap: break-word;
+}
+
+@mixin text-spacing($size) {
+    letter-spacing: $size;
+    padding-left: $size;
+}
+
+@mixin common-transition() {
+    transition: all 0.3s ease-in-out;
+}
+
+@mixin backdrop-filter() {
+    backdrop-filter: blur(1px);
+}
+
+@mixin grid() {
+    display: grid;
+}
+
+@mixin grid-auto-rows($num: auto) {
+    grid-auto-rows: $num;
+}
+
+@mixin grid-col-gap($gap) {
+    grid-column-gap: $gap;
+}
+
+@mixin grid-row-gap($gap) {
+    grid-row-gap: $gap;
+}
+
+@mixin grid-gaps($col-gap, $row-gap) {
+    @if $col-gap {
+        @include grid-col-gap($col-gap);
+    }
+
+    @if $row-gap {
+        @include grid-row-gap($row-gap);
+    }
+}
+
+@mixin grid-cols($num) {
+    grid-template-columns: repeat($num, 1fr);
+}
+
+@mixin grid-rows($num) {
+    grid-template-rows: repeat($num, 1fr);
+}
+
+@mixin flex() {
+    display: flex;
+}
+
+@mixin inline-flex() {
+    display: inline-flex;
+}
+
+@mixin flex-v() {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin flex-wrap-w() {
+    flex-wrap: wrap;
+}
+
+@mixin flex-align-c() {
+    align-items: center;
+}
+
+@mixin flex-align-e() {
+    align-items: flex-end;
+}
+
+@mixin flex-justify-c() {
+    justify-content: center;
+}
+
+@mixin flex-justify-sb() {
+    justify-content: space-between;
+}
+
+@mixin flex-justify-sa() {
+    justify-content: space-around;
+}
+
+@mixin flex-cc() {
+    @include flex;
+    @include flex-align-c;
+    @include flex-justify-c;
+}
+
+@mixin flex-vcc() {
+    @include flex-v;
+    @include flex-align-c;
+    @include flex-justify-c;
+}
+
+@mixin inline-flex-cc() {
+    @include inline-flex;
+    @include flex-align-c;
+    @include flex-justify-c;
+}
+
+@mixin flex-wrap() {
+    @include flex;
+    @include flex-wrap-w;
+}
+
+@mixin flex-map($first, $last) {
+    @include flex;
+    > * {
+        &:first-child {
+            flex: $first;
+        }
+        &:last-child {
+            flex: $last;
+        }
+    }
+}
