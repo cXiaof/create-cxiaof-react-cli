@@ -13,8 +13,10 @@ module.exports = async () => {
     let projectName
     const program = new commander.Command(packageJson.name)
         .version(packageJson.version)
-        .arguments('<projectName>')
+        .usage('<projectName> [options]')
         .action((name) => (projectName = name))
+        .option('--ts', '使用typescript模版')
+        .allowUnknownOption()
         .parse(process.argv)
 
     if (typeof projectName === 'undefined') {
