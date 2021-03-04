@@ -58,6 +58,11 @@
     color: white;
 }
 
+@mixin overflow-y() {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
 @mixin text-overflow() {
     overflow: hidden;
     text-overflow: ellipsis;
