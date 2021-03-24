@@ -17,7 +17,7 @@
     }
   },
   "dependencies": {
-    "ahooks": "^2.9.6",
+    "ahooks": "^2.10.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.21",
     "number-precision": "^1.5.0",
@@ -25,9 +25,10 @@
   },
   "devDependencies": {
     "@craco/craco": "^6.1.1",
-    "craco-alias": "^2.1.1",
+    "craco-alias": "^2.2.0",
     "node-sass": "^4.14.1",
     "normalize.css": "^8.0.1",
+    "open-color": "^1.8.0",
     "postcss-plugin-px2rem": "^0.8.1",
     "prettier": "^2.2.1"
   }

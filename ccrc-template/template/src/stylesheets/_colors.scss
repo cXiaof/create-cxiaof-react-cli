@@ -1,99 +1,150 @@
 @charset "utf-8";
 
-// Greens
-$flat-turquoise: #1abc9c;
-$flat-green-sea: #16a085;
-$flat-emerald: #2ecc71;
-$flat-nephritis: #27ae60;
+@import '~open-color/open-color.css';
+@import '~open-color/open-color';
 
-$aui-success: #009688;
+//  SHANGHAI METRO
+//  ───────────────────────────────────
 
-// Blues
-$flat-peter-river: #3498db;
-$flat-belize-hole: #2980b9;
-$flat-wet-asphalt: #34495e;
-$flat-midnight-blue: #2c3e50;
+$sh-metro-list: (
+    'line-1': #e6002b,
+    'line-2': #8cc220,
+    'line-3': #fbd600,
+    'line-4': #451d84,
+    'line-5': #944c9a,
+    'line-6': #d30068,
+    'line-7': #ed6e00,
+    'line-8': #0094d9,
+    'line-9': #87c9ec,
+    'line-10': #c6afd3,
+    'line-11': #871a2b,
+    'line-12': #007a60,
+    'line-13': #e899c0,
+    'line-15': #c4af8b,
+    'line-16': #98d1c0,
+    'line-17': #b7766c,
+    'line-18': #c09453,
+    'PJ-line': #898989,
+);
 
-$aui-primary: #00bcd4;
-$aui-info: #03a9f4;
-$aui-indigo: #3f51b5;
+$sh-metro-line-1: map-get($sh-metro-list, 'line-1');
+$sh-metro-line-2: map-get($sh-metro-list, 'line-2');
+$sh-metro-line-3: map-get($sh-metro-list, 'line-3');
+$sh-metro-line-4: map-get($sh-metro-list, 'line-4');
+$sh-metro-line-5: map-get($sh-metro-list, 'line-5');
+$sh-metro-line-6: map-get($sh-metro-list, 'line-6');
+$sh-metro-line-7: map-get($sh-metro-list, 'line-7');
+$sh-metro-line-8: map-get($sh-metro-list, 'line-8');
+$sh-metro-line-9: map-get($sh-metro-list, 'line-9');
+$sh-metro-line-10: map-get($sh-metro-list, 'line-10');
+$sh-metro-line-11: map-get($sh-metro-list, 'line-11');
+$sh-metro-line-12: map-get($sh-metro-list, 'line-12');
+$sh-metro-line-13: map-get($sh-metro-list, 'line-13');
+$sh-metro-line-15: map-get($sh-metro-list, 'line-15');
+$sh-metro-line-16: map-get($sh-metro-list, 'line-16');
+$sh-metro-line-17: map-get($sh-metro-list, 'line-17');
+$sh-metro-line-18: map-get($sh-metro-list, 'line-18');
+$sh-metro-PJ-line: map-get($sh-metro-list, 'PJ-line');
 
-// Purples
-$flat-amethyst: #9b59b6;
-$flat-wisteria: #8e44ad;
+:root {
+    --sh-metro-line-1: $sh-metro-line-1;
+    --sh-metro-line-2: $sh-metro-line-2;
+    --sh-metro-line-3: $sh-metro-line-3;
+    --sh-metro-line-4: $sh-metro-line-4;
+    --sh-metro-line-5: $sh-metro-line-5;
+    --sh-metro-line-6: $sh-metro-line-6;
+    --sh-metro-line-7: $sh-metro-line-7;
+    --sh-metro-line-8: $sh-metro-line-8;
+    --sh-metro-line-9: $sh-metro-line-9;
+    --sh-metro-line-10: $sh-metro-line-10;
+    --sh-metro-line-11: $sh-metro-line-11;
+    --sh-metro-line-12: $sh-metro-line-12;
+    --sh-metro-line-13: $sh-metro-line-13;
+    --sh-metro-line-15: $sh-metro-line-15;
+    --sh-metro-line-16: $sh-metro-line-16;
+    --sh-metro-line-17: $sh-metro-line-17;
+    --sh-metro-line-18: $sh-metro-line-18;
+    --sh-metro-PJ-line: $sh-metro-PJ-line;
+}
 
-$aui-purple: #673ab7;
+//  PANTONE COLOR OF THE YEAR
+//  ───────────────────────────────────
 
-// Yellows
-$flat-sunflower: #f1c40f;
+$pantone-color-list: (
+    '15-4020': #98b2d1,
+    '17-2031': #c74375,
+    '19-1664': #bf1932,
+    '14-4811': #7bc4c4,
+    '17-1456': #e2583e,
+    '15-5217': #53b0ae,
+    '13-1106': #decdbe,
+    '19-1577': #9b1b30,
+    '18-3943': #5a5b9f,
+    '14-0848': #f0c05a,
+    '15-5519': #45b5aa,
+    '18-2120': #d94f70,
+    '17-1463': #dd4124,
+    '17-5641': #009473,
+    '18-3224': #ad5e99,
+    '18-1438': #964f4c,
+    '15-3919': #91a8d0,
+    '13-1520': #f7cac9,
+    '15-0343': #88b04b,
+    '18-3838': #5f4b8b,
+    '16-1546': #ff6f61,
+    '19-4052': #0f4c81,
+    '13-0647': #f9e547,
+    '17-5104': #97999b,
+);
 
-$aui-warning: #ffc107;
+$pantone-2000: map-get($pantone-color-list, '15-4020');
+$pantone-2001: map-get($pantone-color-list, '17-2031');
+$pantone-2002: map-get($pantone-color-list, '19-1664');
+$pantone-2003: map-get($pantone-color-list, '14-4811');
+$pantone-2004: map-get($pantone-color-list, '17-1456');
+$pantone-2005: map-get($pantone-color-list, '15-5217');
+$pantone-2006: map-get($pantone-color-list, '13-1106');
+$pantone-2007: map-get($pantone-color-list, '19-1577');
+$pantone-2008: map-get($pantone-color-list, '18-3943');
+$pantone-2009: map-get($pantone-color-list, '14-0848');
+$pantone-2010: map-get($pantone-color-list, '15-5519');
+$pantone-2011: map-get($pantone-color-list, '18-2120');
+$pantone-2012: map-get($pantone-color-list, '17-1463');
+$pantone-2013: map-get($pantone-color-list, '17-5641');
+$pantone-2014: map-get($pantone-color-list, '18-3224');
+$pantone-2015: map-get($pantone-color-list, '18-1438');
+$pantone-2016-1: map-get($pantone-color-list, '15-3919');
+$pantone-2016-2: map-get($pantone-color-list, '13-1520');
+$pantone-2017: map-get($pantone-color-list, '15-0343');
+$pantone-2018: map-get($pantone-color-list, '18-3838');
+$pantone-2019: map-get($pantone-color-list, '16-1546');
+$pantone-2020: map-get($pantone-color-list, '19-4052');
+$pantone-2021-1: map-get($pantone-color-list, '13-0647');
+$pantone-2021-2: map-get($pantone-color-list, '17-5104');
 
-// Oranges
-$flat-orange: #f39c12;
-$flat-carrot: #e67e22;
-$flat-pumpkin: #d35400;
-
-// Reds
-$flat-alizarin: #e74c3c;
-$flat-pomegranate: #c0392b;
-
-$aui-pink: #e91e63;
-$aui-danger: #e51c23;
-
-// Grays
-$flat-clouds: #ecf0f1;
-$flat-silver: #bdc3c7;
-$flat-concrete: #95a5a6;
-$flat-asbestos: #7f8c8d;
-$flat-default: #302e2e;
-
-$aui-default: #212121;
-
-$web-white: $flat-clouds !default;
-$web-black: $aui-default !default;
-
-// SH Subway
-$sh-line-01: #e3002a;
-$sh-line-02: #86b81c;
-$sh-line-03: #fcd600;
-$sh-line-04: #5a2b8d;
-$sh-line-05: #96499a;
-$sh-line-06: #f0087d;
-$sh-line-07: #ee782e;
-$sh-line-08: #01a2e2;
-$sh-line-09: #69c7f4;
-$sh-line-10: #c6afd4;
-$sh-line-11: #871c2a;
-$sh-line-12: #007a61;
-$sh-line-13: #eb81b9;
-$sh-line-16: #98d1c0;
-$sh-line-17: #b85a4e;
-$sh-line-MT: #008187;
-$sh-line-MP: #b5b5b6;
-
-// Pantone
-$pantone-2000: #9bb7d4;
-$pantone-2001: #c74375;
-$pantone-2002: #bf1932;
-$pantone-2003: #7bc4c4;
-$pantone-2004: #e2583e;
-$pantone-2005: #53b0ae;
-$pantone-2006: #decdbe;
-$pantone-2007: #9b1b30;
-$pantone-2008: #5a5b9f;
-$pantone-2009: #f0c05a;
-$pantone-2010: #45b5aa;
-$pantone-2011: #d94f70;
-$pantone-2012: #dd4124;
-$pantone-2013: #009473;
-$pantone-2014: #ad5e99;
-$pantone-2014: #964f4c;
-$pantone-2016-1: #f7cac9;
-$pantone-2016-2: #91a8d0;
-$pantone-2017: #88b04b;
-$pantone-2018: #5f4b8b;
-$pantone-2019: #ff6f61;
-$pantone-2020: #0f4c81;
-$pantone-2021-1: #97999b;
-$pantone-2021-2: #f9e547;
+:root {
+    --pantone-2000: $pantone-2000;
+    --pantone-2001: $pantone-2001;
+    --pantone-2002: $pantone-2002;
+    --pantone-2003: $pantone-2003;
+    --pantone-2004: $pantone-2004;
+    --pantone-2005: $pantone-2005;
+    --pantone-2006: $pantone-2006;
+    --pantone-2007: $pantone-2007;
+    --pantone-2008: $pantone-2008;
+    --pantone-2009: $pantone-2009;
+    --pantone-2010: $pantone-2010;
+    --pantone-2011: $pantone-2011;
+    --pantone-2012: $pantone-2012;
+    --pantone-2013: $pantone-2013;
+    --pantone-2014: $pantone-2014;
+    --pantone-2015: $pantone-2015;
+    --pantone-2016-1: $pantone-2016-1;
+    --pantone-2016-2: $pantone-2016-2;
+    --pantone-2017: $pantone-2017;
+    --pantone-2018: $pantone-2018;
+    --pantone-2019: $pantone-2019;
+    --pantone-2020: $pantone-2020;
+    --pantone-2021-1: $pantone-2021-1;
+    --pantone-2021-2: $pantone-2021-2;
+}

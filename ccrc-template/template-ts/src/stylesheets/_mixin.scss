@@ -83,8 +83,8 @@
     transition: all 0.3s ease-in-out;
 }
 
-@mixin backdrop-filter() {
-    backdrop-filter: blur(1px);
+@mixin backdrop-filter($num: 1px) {
+    backdrop-filter: blur($num);
 }
 
 @mixin grid() {
