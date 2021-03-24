@@ -27,25 +27,44 @@ $sh-metro-list: (
     'PJ-line': #898989,
 );
 
+$sh-metro-line-1: map-get($sh-metro-list, 'line-1');
+$sh-metro-line-2: map-get($sh-metro-list, 'line-2');
+$sh-metro-line-3: map-get($sh-metro-list, 'line-3');
+$sh-metro-line-4: map-get($sh-metro-list, 'line-4');
+$sh-metro-line-5: map-get($sh-metro-list, 'line-5');
+$sh-metro-line-6: map-get($sh-metro-list, 'line-6');
+$sh-metro-line-7: map-get($sh-metro-list, 'line-7');
+$sh-metro-line-8: map-get($sh-metro-list, 'line-8');
+$sh-metro-line-9: map-get($sh-metro-list, 'line-9');
+$sh-metro-line-10: map-get($sh-metro-list, 'line-10');
+$sh-metro-line-11: map-get($sh-metro-list, 'line-11');
+$sh-metro-line-12: map-get($sh-metro-list, 'line-12');
+$sh-metro-line-13: map-get($sh-metro-list, 'line-13');
+$sh-metro-line-15: map-get($sh-metro-list, 'line-15');
+$sh-metro-line-16: map-get($sh-metro-list, 'line-16');
+$sh-metro-line-17: map-get($sh-metro-list, 'line-17');
+$sh-metro-line-18: map-get($sh-metro-list, 'line-18');
+$sh-metro-PJ-line: map-get($sh-metro-list, 'PJ-line');
+
 :root {
-    --sh-metro-line-1: map-get($sh-metro-list, 'line-1');
-    --sh-metro-line-2: map-get($sh-metro-list, 'line-2');
-    --sh-metro-line-3: map-get($sh-metro-list, 'line-3');
-    --sh-metro-line-4: map-get($sh-metro-list, 'line-4');
-    --sh-metro-line-5: map-get($sh-metro-list, 'line-5');
-    --sh-metro-line-6: map-get($sh-metro-list, 'line-6');
-    --sh-metro-line-7: map-get($sh-metro-list, 'line-7');
-    --sh-metro-line-8: map-get($sh-metro-list, 'line-8');
-    --sh-metro-line-9: map-get($sh-metro-list, 'line-9');
-    --sh-metro-line-10: map-get($sh-metro-list, 'line-10');
-    --sh-metro-line-11: map-get($sh-metro-list, 'line-11');
-    --sh-metro-line-12: map-get($sh-metro-list, 'line-12');
-    --sh-metro-line-13: map-get($sh-metro-list, 'line-13');
-    --sh-metro-line-15: map-get($sh-metro-list, 'line-15');
-    --sh-metro-line-16: map-get($sh-metro-list, 'line-16');
-    --sh-metro-line-17: map-get($sh-metro-list, 'line-17');
-    --sh-metro-line-18: map-get($sh-metro-list, 'line-18');
-    --sh-metro-PJ-line: map-get($sh-metro-list, 'PJ-line');
+    --sh-metro-line-1: $sh-metro-line-1;
+    --sh-metro-line-2: $sh-metro-line-2;
+    --sh-metro-line-3: $sh-metro-line-3;
+    --sh-metro-line-4: $sh-metro-line-4;
+    --sh-metro-line-5: $sh-metro-line-5;
+    --sh-metro-line-6: $sh-metro-line-6;
+    --sh-metro-line-7: $sh-metro-line-7;
+    --sh-metro-line-8: $sh-metro-line-8;
+    --sh-metro-line-9: $sh-metro-line-9;
+    --sh-metro-line-10: $sh-metro-line-10;
+    --sh-metro-line-11: $sh-metro-line-11;
+    --sh-metro-line-12: $sh-metro-line-12;
+    --sh-metro-line-13: $sh-metro-line-13;
+    --sh-metro-line-15: $sh-metro-line-15;
+    --sh-metro-line-16: $sh-metro-line-16;
+    --sh-metro-line-17: $sh-metro-line-17;
+    --sh-metro-line-18: $sh-metro-line-18;
+    --sh-metro-PJ-line: $sh-metro-PJ-line;
 }
 
 //  PANTONE COLOR OF THE YEAR
@@ -78,29 +97,54 @@ $pantone-color-list: (
     '17-5104': #97999b,
 );
 
+$pantone-2000: map-get($pantone-color-list, '15-4020');
+$pantone-2001: map-get($pantone-color-list, '17-2031');
+$pantone-2002: map-get($pantone-color-list, '19-1664');
+$pantone-2003: map-get($pantone-color-list, '14-4811');
+$pantone-2004: map-get($pantone-color-list, '17-1456');
+$pantone-2005: map-get($pantone-color-list, '15-5217');
+$pantone-2006: map-get($pantone-color-list, '13-1106');
+$pantone-2007: map-get($pantone-color-list, '19-1577');
+$pantone-2008: map-get($pantone-color-list, '18-3943');
+$pantone-2009: map-get($pantone-color-list, '14-0848');
+$pantone-2010: map-get($pantone-color-list, '15-5519');
+$pantone-2011: map-get($pantone-color-list, '18-2120');
+$pantone-2012: map-get($pantone-color-list, '17-1463');
+$pantone-2013: map-get($pantone-color-list, '17-5641');
+$pantone-2014: map-get($pantone-color-list, '18-3224');
+$pantone-2015: map-get($pantone-color-list, '18-1438');
+$pantone-2016-1: map-get($pantone-color-list, '15-3919');
+$pantone-2016-2: map-get($pantone-color-list, '13-1520');
+$pantone-2017: map-get($pantone-color-list, '15-0343');
+$pantone-2018: map-get($pantone-color-list, '18-3838');
+$pantone-2019: map-get($pantone-color-list, '16-1546');
+$pantone-2020: map-get($pantone-color-list, '19-4052');
+$pantone-2021-1: map-get($pantone-color-list, '13-0647');
+$pantone-2021-2: map-get($pantone-color-list, '17-5104');
+
 :root {
-    --pantone-2000: map-get($pantone-color-list, '15-4020');
-    --pantone-2001: map-get($pantone-color-list, '17-2031');
-    --pantone-2002: map-get($pantone-color-list, '19-1664');
-    --pantone-2003: map-get($pantone-color-list, '14-4811');
-    --pantone-2004: map-get($pantone-color-list, '17-1456');
-    --pantone-2005: map-get($pantone-color-list, '15-5217');
-    --pantone-2006: map-get($pantone-color-list, '13-1106');
-    --pantone-2007: map-get($pantone-color-list, '19-1577');
-    --pantone-2008: map-get($pantone-color-list, '18-3943');
-    --pantone-2009: map-get($pantone-color-list, '14-0848');
-    --pantone-2010: map-get($pantone-color-list, '15-5519');
-    --pantone-2011: map-get($pantone-color-list, '18-2120');
-    --pantone-2012: map-get($pantone-color-list, '17-1463');
-    --pantone-2013: map-get($pantone-color-list, '17-5641');
-    --pantone-2014: map-get($pantone-color-list, '18-3224');
-    --pantone-2015: map-get($pantone-color-list, '18-1438');
-    --pantone-2016-1: map-get($pantone-color-list, '15-3919');
-    --pantone-2016-2: map-get($pantone-color-list, '13-1520');
-    --pantone-2017: map-get($pantone-color-list, '15-0343');
-    --pantone-2018: map-get($pantone-color-list, '18-3838');
-    --pantone-2019: map-get($pantone-color-list, '16-1546');
-    --pantone-2020: map-get($pantone-color-list, '19-4052');
-    --pantone-2021-1: map-get($pantone-color-list, '13-0647');
-    --pantone-2021-2: map-get($pantone-color-list, '17-5104');
+    --pantone-2000: $pantone-2000;
+    --pantone-2001: $pantone-2001;
+    --pantone-2002: $pantone-2002;
+    --pantone-2003: $pantone-2003;
+    --pantone-2004: $pantone-2004;
+    --pantone-2005: $pantone-2005;
+    --pantone-2006: $pantone-2006;
+    --pantone-2007: $pantone-2007;
+    --pantone-2008: $pantone-2008;
+    --pantone-2009: $pantone-2009;
+    --pantone-2010: $pantone-2010;
+    --pantone-2011: $pantone-2011;
+    --pantone-2012: $pantone-2012;
+    --pantone-2013: $pantone-2013;
+    --pantone-2014: $pantone-2014;
+    --pantone-2015: $pantone-2015;
+    --pantone-2016-1: $pantone-2016-1;
+    --pantone-2016-2: $pantone-2016-2;
+    --pantone-2017: $pantone-2017;
+    --pantone-2018: $pantone-2018;
+    --pantone-2019: $pantone-2019;
+    --pantone-2020: $pantone-2020;
+    --pantone-2021-1: $pantone-2021-1;
+    --pantone-2021-2: $pantone-2021-2;
 }
