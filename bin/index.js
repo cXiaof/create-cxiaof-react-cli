@@ -11,9 +11,10 @@ const cloneTemplate = require('./clone')
 const installPackage = require('./install')
 const handleError = require('./exit')
 
-initCRA().then(async ([projectName, useTS]) => {
+initCRA().then(async ([projectName, options]) => {
     const spinner = ora('- 清理默认模版')
     spinner.start()
+
     const directory = path.join(projectName)
     await fs.emptyDir(path.join(directory, 'public'), (error) =>
         handleError(error, spinner)
@@ -21,10 +22,13 @@ initCRA().then(async ([projectName, useTS]) => {
     await fs.emptyDir(path.join(directory, 'src'), (error) =>
         handleError(error, spinner)
     )
+
     setTimeout(() => {
         spinner.succeed()
-        cloneTemplate(directory, useTS)
-            .then((templatePath) => installPackage(projectName, templatePath))
+        cloneTemplate(directory, options)
+            .then((templatePath) =>
+                installPackage(templatePath, projectName, options)
+            )
             .then(() => {
                 console.log(
                     chalk.bgMagenta('CCRC-APP'),

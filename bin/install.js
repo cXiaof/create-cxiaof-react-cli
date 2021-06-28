@@ -8,32 +8,34 @@ const exec = util.promisify(require('child_process').exec)
 
 const handleError = require('./exit')
 
-module.exports = async (projectName, templatePath) => {
+module.exports = async (templatePath, projectName, options) => {
     const spinner = ora('- 安装其他依赖包')
     spinner.start()
-    const { template, dependencies, devDependencies } = require(path.join(
-        templatePath,
-        'template.json'
-    ))
 
-    const options = { cwd: projectName }
-    await exec(getPackagesStr(dependencies), options)
+    const jsonPath = path.join(templatePath, 'template.json')
+    const { template, dependencies, devDependencies } = require(jsonPath)
+
+    const execOptions = { cwd: projectName }
+
+    await exec(getPackagesStr(dependencies, options), execOptions)
         .then(({ error }) => handleError(error, spinner))
         .catch((error) => handleError(error, spinner))
-    await exec(getPackagesStr(devDependencies, ' -D'), options)
+
+    await exec(getPackagesStr(devDependencies, options, ' -D'), execOptions)
         .then(({ error }) => handleError(error, spinner))
         .catch((error) => handleError(error, spinner))
+
     await updatePackageJson(template, projectName)
 
     spinner.succeed()
 }
 
-const getPackagesStr = (obj, arg = '') => {
-    return Object.entries(obj).reduce((target, [name, version]) => {
-        target += ` ${name}@${version}`
+const getPackagesStr = (obj, options, arg = '') =>
+    Object.entries(obj).reduce((target, [name, version]) => {
+        target += ` ${name}`
+        if (options.specified) target += `@${version}`
         return target
     }, `yarn add${arg}`)
-}
 
 const updatePackageJson = async (template, projectName) => {
     const packagePath = path.join(projectName, 'package.json')

@@ -11,15 +11,16 @@ const packageJson = require('../package.json')
 
 module.exports = async () => {
     let projectName
-    let useTS
+    let projectOptions
     new commander.Command(packageJson.name)
         .version(packageJson.version)
         .arguments('<projectName>')
         .option('-ts, --typescript', '使用typescript模版')
+        .option('-sp, --specified', '使用指定版本的依赖包')
         .allowUnknownOption()
         .action((name, options) => {
             projectName = name
-            useTS = options.typescript
+            projectOptions = options
         })
         .parse(process.argv)
 
@@ -30,7 +31,7 @@ module.exports = async () => {
 
     let oraText = `- 使用CRA初始项目：${projectName}`
     let execCMD = `npx create-react-app ${projectName}`
-    if (useTS) {
+    if (projectOptions.typescript) {
         oraText += ' (typescript)'
         execCMD += ' --template typescript'
     }
@@ -42,5 +43,5 @@ module.exports = async () => {
         .catch((error) => handleError(error, spinner))
     spinner.succeed()
 
-    return [projectName, useTS]
+    return [projectName, projectOptions]
 }
