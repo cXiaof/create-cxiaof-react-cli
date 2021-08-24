@@ -1,6 +1,6 @@
 {
   "name": "create-cxiaof-react-cli",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "author": "cXiaof",
   "repository": {
     "type": "git",
@@ -17,11 +17,11 @@
     "ccrc": "./bin/index.js"
   },
   "dependencies": {
-    "chalk": "^4.1.1",
+    "chalk": "^4.1.2",
     "child_process": "^1.0.2",
-    "commander": "^8.0.0",
+    "commander": "^8.1.0",
     "fs-extra": "^10.0.0",
-    "ora": "^5.4.1",
+    "ora": "^6.0.0",
     "path": "^0.12.7",
     "util": "^0.12.4"
   },
