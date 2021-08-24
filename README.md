@@ -24,6 +24,8 @@ create
 ccrc project
 # use typescript
 ccrc project --ts
+# use specified version of dependencies
+ccrc project --sp
 ```
 
 ## develop cli
