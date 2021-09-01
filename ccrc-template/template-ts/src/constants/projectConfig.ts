@@ -1,6 +1,8 @@
 window.debug = process.env.NODE_ENV === 'development'
 
-document.oncontextmenu = () => null
+document.oncontextmenu = () => {
+    return false
+}
 
 const resizeTextSize = () => {
     const { clientWidth, clientHeight } = document.documentElement

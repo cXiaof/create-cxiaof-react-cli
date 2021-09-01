@@ -1,14 +1,14 @@
 {
   "name": "create-cxiaof-react-cli",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "author": "cXiaof",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/cXiaof/create-cxiaof-react-cli.git"
-  },
   "license": "MIT",
   "engines": {
     "node": ">=12"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cXiaof/create-cxiaof-react-cli.git"
   },
   "bugs": {
     "url": "https://github.com/cXiaof/create-cxiaof-react-cli/issues"
