@@ -6,7 +6,7 @@
       "@/*": ["components/*"],
       "#/*": ["constants/*"],
       "~/*": ["utils/*"],
-      "~R": ["utils/Request.js"],
+      "~R": ["utils/Request"],
       "~deals/*": ["utils/deals/*"],
       "~mapEvents/*": ["utils/mapEvents/*"],
       "~mockData/*": ["utils/mockData/*"],
