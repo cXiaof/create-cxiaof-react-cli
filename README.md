@@ -21,11 +21,11 @@ create
 
 ```shell
 # use javascript
-ccrc project
+ccrc [projectName]
 # use typescript
-ccrc project --ts
+ccrc [projectName] -ts
 # use specified version of dependencies
-ccrc project --sp
+ccrc [projectName] -sp
 ```
 
 ## develop cli
