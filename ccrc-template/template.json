@@ -24,7 +24,7 @@
     "umi-request": "^1.4.0"
   },
   "devDependencies": {
-    "@craco/craco": "^6.3.0",
+    "@craco/craco": "^6.4.0",
     "craco-alias": "^3.0.1",
     "node-sass": "^6.0.1",
     "normalize.css": "^8.0.1",
