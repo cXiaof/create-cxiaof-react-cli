@@ -8,6 +8,13 @@ const itemsTool = {
         if (callback) arr.forEach(callback)
         return arr
     },
+
+    putEleIndexFirst: (array, index) => {
+        let arr = [...array]
+        const [target] = arr.splice(index, 1)
+        arr.unshift(target)
+        return arr
+    },
 }
 
 export default itemsTool
