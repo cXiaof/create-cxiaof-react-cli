@@ -29,7 +29,7 @@
     "prettier": "^2.5.0"
   },
   "scripts": {
-    "format": "prettier --loglevel silent --write {bin,ccrc-template}/**/*.{html,css,scss,js}",
+    "format": "prettier --loglevel silent --write \"{bin,ccrc-template}/**/*.{html,css,scss,js}\"",
     "f": "npm run format"
   }
 }
