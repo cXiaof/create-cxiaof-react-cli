@@ -70,56 +70,58 @@ $sh-metro-PJ-line: map-get($sh-metro-list, 'PJ-line');
 //  ───────────────────────────────────
 
 $pantone-color-list: (
-    '15-4020': #98b2d1,
-    '17-2031': #c74375,
-    '19-1664': #bf1932,
-    '14-4811': #7bc4c4,
-    '17-1456': #e2583e,
-    '15-5217': #53b0ae,
-    '13-1106': #decdbe,
-    '19-1577': #9b1b30,
-    '18-3943': #5a5b9f,
-    '14-0848': #f0c05a,
-    '15-5519': #45b5aa,
-    '18-2120': #d94f70,
-    '17-1463': #dd4124,
-    '17-5641': #009473,
-    '18-3224': #ad5e99,
-    '18-1438': #964f4c,
-    '15-3919': #91a8d0,
-    '13-1520': #f7cac9,
-    '15-0343': #88b04b,
-    '18-3838': #5f4b8b,
-    '16-1546': #ff6f61,
-    '19-4052': #0f4c81,
-    '13-0647': #f9e547,
-    '17-5104': #97999b,
+    '15-4020TPG': #98b2d1,
+    '17-2031TPG': #c34e7c,
+    '19-1664TPG': #bd3645,
+    '14-4811TPG': #7fc9cb,
+    '17-1456TPG': #e2654d,
+    '15-5217TPG': #5bb3b0,
+    '13-1106TPG': #decebb,
+    '19-1557TPG': #9d363f,
+    '18-3943TPG': #6364a5,
+    '14-0848TPG': #ebbf57,
+    '15-5519TPG': #4db6ad,
+    '18-2120TPG': #d85a7b,
+    '17-1463TPG': #e34f33,
+    '17-5641TPG': #00997b,
+    '18-3224TPG': #b067a1,
+    '18-1438TPG': #975a58,
+    '15-3919TPG': #95aad3,
+    '13-1520TPG': #f8cdcd,
+    '15-0343TPG': #92b558,
+    '18-3838TPG': #6b5b95,
+    '16-1546TPG': #fc766a,
+    '19-4052TPG': #34558b,
+    '13-0647TPG': #f3e04e,
+    '17-5104TPG': #96999c,
+    '17-3938TPG': #696aad,
 );
 
-$pantone-2000: map-get($pantone-color-list, '15-4020');
-$pantone-2001: map-get($pantone-color-list, '17-2031');
-$pantone-2002: map-get($pantone-color-list, '19-1664');
-$pantone-2003: map-get($pantone-color-list, '14-4811');
-$pantone-2004: map-get($pantone-color-list, '17-1456');
-$pantone-2005: map-get($pantone-color-list, '15-5217');
-$pantone-2006: map-get($pantone-color-list, '13-1106');
-$pantone-2007: map-get($pantone-color-list, '19-1577');
-$pantone-2008: map-get($pantone-color-list, '18-3943');
-$pantone-2009: map-get($pantone-color-list, '14-0848');
-$pantone-2010: map-get($pantone-color-list, '15-5519');
-$pantone-2011: map-get($pantone-color-list, '18-2120');
-$pantone-2012: map-get($pantone-color-list, '17-1463');
-$pantone-2013: map-get($pantone-color-list, '17-5641');
-$pantone-2014: map-get($pantone-color-list, '18-3224');
-$pantone-2015: map-get($pantone-color-list, '18-1438');
-$pantone-2016-1: map-get($pantone-color-list, '15-3919');
-$pantone-2016-2: map-get($pantone-color-list, '13-1520');
-$pantone-2017: map-get($pantone-color-list, '15-0343');
-$pantone-2018: map-get($pantone-color-list, '18-3838');
-$pantone-2019: map-get($pantone-color-list, '16-1546');
-$pantone-2020: map-get($pantone-color-list, '19-4052');
-$pantone-2021-1: map-get($pantone-color-list, '13-0647');
-$pantone-2021-2: map-get($pantone-color-list, '17-5104');
+$pantone-2000: map-get($pantone-color-list, '15-4020TPG');
+$pantone-2001: map-get($pantone-color-list, '17-2031TPG');
+$pantone-2002: map-get($pantone-color-list, '19-1664TPG');
+$pantone-2003: map-get($pantone-color-list, '14-4811TPG');
+$pantone-2004: map-get($pantone-color-list, '17-1456TPG');
+$pantone-2005: map-get($pantone-color-list, '15-5217TPG');
+$pantone-2006: map-get($pantone-color-list, '13-1106TPG');
+$pantone-2007: map-get($pantone-color-list, '19-1557TPG');
+$pantone-2008: map-get($pantone-color-list, '18-3943TPG');
+$pantone-2009: map-get($pantone-color-list, '14-0848TPG');
+$pantone-2010: map-get($pantone-color-list, '15-5519TPG');
+$pantone-2011: map-get($pantone-color-list, '18-2120TPG');
+$pantone-2012: map-get($pantone-color-list, '17-1463TPG');
+$pantone-2013: map-get($pantone-color-list, '17-5641TPG');
+$pantone-2014: map-get($pantone-color-list, '18-3224TPG');
+$pantone-2015: map-get($pantone-color-list, '18-1438TPG');
+$pantone-2016-1: map-get($pantone-color-list, '15-3919TPG');
+$pantone-2016-2: map-get($pantone-color-list, '13-1520TPG');
+$pantone-2017: map-get($pantone-color-list, '15-0343TPG');
+$pantone-2018: map-get($pantone-color-list, '18-3838TPG');
+$pantone-2019: map-get($pantone-color-list, '16-1546TPG');
+$pantone-2020: map-get($pantone-color-list, '19-4052TPG');
+$pantone-2021-1: map-get($pantone-color-list, '13-0647TPG');
+$pantone-2021-2: map-get($pantone-color-list, '17-5104TPG');
+$pantone-2022: map-get($pantone-color-list, '17-3938TPG');
 
 :root {
     --pantone-2000: $pantone-2000;
@@ -146,4 +148,5 @@ $pantone-2021-2: map-get($pantone-color-list, '17-5104');
     --pantone-2020: $pantone-2020;
     --pantone-2021-1: $pantone-2021-1;
     --pantone-2021-2: $pantone-2021-2;
+    --pantone-2022: $pantone-2022;
 }

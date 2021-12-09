@@ -30,6 +30,6 @@
     "normalize.css": "^8.0.1",
     "open-color": "^1.9.1",
     "postcss-plugin-px2rem": "^0.8.1",
-    "prettier": "^2.5.0"
+    "prettier": "^2.5.1"
   }
 }
