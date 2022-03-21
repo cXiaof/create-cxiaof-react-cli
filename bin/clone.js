@@ -12,7 +12,10 @@ module.exports = async (directory, options) => {
     const templatePath = path.join(__dirname, '..', 'ccrc-template')
 
     let folder = 'template'
-    if (options.typescript) folder += '-ts'
+    await fs.copy(path.join(templatePath, folder), directory, (error) =>
+        handleError(error, spinner)
+    )
+    folder += options.typescript ? '-ts' : '-js'
     await fs.copy(path.join(templatePath, folder), directory, (error) =>
         handleError(error, spinner)
     )
