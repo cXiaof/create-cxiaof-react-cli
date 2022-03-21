@@ -1,6 +1,6 @@
 'use strict'
 
-const commander = require('commander')
+const { Command } = require('commander')
 const ora = require('ora')
 const util = require('util')
 const exec = util.promisify(require('child_process').exec)
@@ -12,7 +12,8 @@ const packageJson = require('../package.json')
 module.exports = async () => {
     let projectName
     let projectOptions
-    new commander.Command(packageJson.name)
+    new Command()
+        .name(packageJson.name)
         .version(packageJson.version)
         .arguments('<projectName>')
         .option('-ts, --typescript', '使用typescript模版')
@@ -30,7 +31,7 @@ module.exports = async () => {
     }
 
     let oraText = `- 使用CRA初始项目：${projectName}`
-    let execCMD = `npx create-react-app ${projectName}`
+    let execCMD = `yarn create react-app ${projectName}`
     if (projectOptions.typescript) {
         oraText += ' (typescript)'
         execCMD += ' --template typescript'

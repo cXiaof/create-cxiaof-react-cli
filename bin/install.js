@@ -25,10 +25,6 @@ module.exports = async (templatePath, projectName, options) => {
         .then(({ error }) => handleError(error, spinner))
         .catch((error) => handleError(error, spinner))
 
-    await exec('npx tailwindcss init -p', execOptions)
-        .then(({ error }) => handleError(error, spinner))
-        .catch((error) => handleError(error, spinner))
-
     await updatePackageJson(template, projectName)
 
     spinner.succeed()
