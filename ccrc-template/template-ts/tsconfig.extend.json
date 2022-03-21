@@ -2,15 +2,7 @@
   "compilerOptions": {
     "baseUrl": "src",
     "paths": {
-      "^/*": ["assets/*"],
-      "@/*": ["components/*"],
-      "#/*": ["constants/*"],
-      "~/*": ["utils/*"],
-      "~R": ["utils/Request"],
-      "~deals/*": ["utils/deals/*"],
-      "~mapEvents/*": ["utils/mapEvents/*"],
-      "~mockData/*": ["utils/mockData/*"],
-      "~tools/*": ["utils/tools/*"]
+      "@@/*": ["./*"]
     }
   },
   "exclude": ["node_modules", "dist"]

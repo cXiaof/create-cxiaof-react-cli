@@ -25,17 +25,22 @@ module.exports = async (templatePath, projectName, options) => {
         .then(({ error }) => handleError(error, spinner))
         .catch((error) => handleError(error, spinner))
 
+    await exec('npx tailwindcss init -p', execOptions)
+        .then(({ error }) => handleError(error, spinner))
+        .catch((error) => handleError(error, spinner))
+
     await updatePackageJson(template, projectName)
 
     spinner.succeed()
 }
 
-const getPackagesStr = (obj, options, arg = '') =>
-    Object.entries(obj).reduce((target, [name, version]) => {
+const getPackagesStr = (obj, options, arg = '') => {
+    return Object.entries(obj).reduce((target, [name, version]) => {
         target += ` ${name}`
         if (options.specified) target += `@${version}`
         return target
     }, `yarn add${arg}`)
+}
 
 const updatePackageJson = async (template, projectName) => {
     const packagePath = path.join(projectName, 'package.json')
