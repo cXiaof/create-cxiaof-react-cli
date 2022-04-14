@@ -1,13 +1,13 @@
 {
   "name": "ccrc-template",
   "version": "1.4.1",
-  "main": "template.json",
-  "author": "cXiaof",
-  "license": "MIT",
-  "engines": {
-    "node": ">=12"
-  },
   "bugs": {
     "url": "https://github.com/cXiaof/create-cxiaof-react-cli/issues"
+  },
+  "license": "MIT",
+  "author": "cXiaof",
+  "main": "template.json",
+  "engines": {
+    "node": ">=12"
   }
 }
