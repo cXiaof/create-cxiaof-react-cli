@@ -12,7 +12,7 @@
       "t": "npm run test",
       "test:coverage": "craco test --coverage",
       "c": "npm run test:coverage",
-      "format": "prettier --loglevel silent --write 'src/**/*.{html,css,scss,less,js,jsx,ts,tsx,md,json}'",
+      "format": "prettier --loglevel silent --write \"src/**/*.{html,css,scss,less,js,jsx,ts,tsx,md,json}\"",
       "f": "npm run format"
     }
   },
