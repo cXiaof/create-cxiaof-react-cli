@@ -1,6 +1,6 @@
 {
   "name": "ccrc-template",
-  "version": "1.4.1",
+  "version": "1.5.3",
   "bugs": {
     "url": "https://github.com/cXiaof/create-cxiaof-react-cli/issues"
   },
@@ -8,6 +8,6 @@
   "author": "cXiaof",
   "main": "template.json",
   "engines": {
-    "node": ">=12"
+    "node": ">=14"
   }
 }
