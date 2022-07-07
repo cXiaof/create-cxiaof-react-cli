@@ -18,6 +18,16 @@ export const calcGolden = (num, reverse) => {
   return NP.times(num, divisor)
 }
 
+export const calcArrayDepth = (arr) => {
+  let depth = 1
+  let first = arr[0]
+  while (Array.isArray(first)) {
+    depth++
+    first = first[0]
+  }
+  return depth
+}
+
 export const getTextWidth = (txt) => {
   let result = 0
   for (let i = 0; i < txt.length; i++) {

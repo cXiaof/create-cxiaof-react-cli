@@ -1,3 +1,5 @@
-export const sleep = (time: number): Promise<void> => {
-  return new Promise((resolve) => setTimeout(resolve, time))
+export const sleep = (time: number = 1000 / 60): Promise<void> => {
+  return new Promise((resolve) => {
+    setTimeout(resolve, time)
+  })
 }
