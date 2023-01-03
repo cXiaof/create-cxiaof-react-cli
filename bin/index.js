@@ -30,19 +30,18 @@ initCRA().then(async ([projectName, options]) => {
         installPackage(templatePath, projectName, options),
       )
       .then(() => {
-        console.log(chalk.bgMagenta('CCRC-APP'), chalk.green('创建完毕√'))
-        console.log(
-          chalk.yellow('检查更新:'),
-          chalk.magenta('cd'),
-          chalk.cyan(projectName),
-          chalk.magenta('&& yarn outdated'),
-        )
-        console.log(
-          chalk.yellow('快速开始:'),
-          chalk.magenta('cd'),
-          chalk.cyan(projectName),
-          chalk.magenta('&& yarn s'),
-        )
+        showTips(projectName)
       })
   }, 1000)
 })
+
+const showTips = (projectName) => {
+  console.log(chalk.bgMagenta('CCRC-APP'), chalk.green('创建完毕√'))
+
+  let cd = chalk.magenta('cd ')
+  cd += chalk.cyan(projectName)
+  cd += chalk.magenta(';')
+
+  console.log(chalk.yellow('检查更新:'), cd, chalk.magenta('yarn outdated'))
+  console.log(chalk.yellow('快速开始:'), cd, chalk.magenta('yarn dev'))
+}
