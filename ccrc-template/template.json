@@ -5,29 +5,24 @@
     "scripts": {
       "build": "craco build",
       "dev": "craco start",
-      "format": "prettier --loglevel silent --write \"src/**/*.{html,css,scss,less,js,jsx,ts,tsx,md,json}\"",
+      "format": "prettier --loglevel silent --write \"src/**/*.{html,css,js,jsx,ts,tsx,md,json}\"",
       "prepublish": "npm run format",
       "start": "craco start"
     }
   },
   "dependencies": {
-    "ahooks": "^3.5.2",
-    "axios": "^0.27.2",
-    "classnames": "^2.3.1",
+    "ahooks": "^3.7.4",
+    "axios": "^1.2.2",
+    "classnames": "^2.3.2",
     "lodash": "^4.17.21",
-    "number-precision": "^1.5.2"
+    "number-precision": "^1.6.0"
   },
   "devDependencies": {
-    "@craco/craco": "^6.4.4",
-    "autoprefixer": "^10.4.7",
-    "node-sass": "^7.0.1",
-    "normalize.css": "^8.0.1",
-    "open-color": "^1.9.1",
-    "postcss": "^8.4.14",
-    "prettier": "^2.7.1",
-    "prettier-plugin-organize-imports": "^3.0.0",
-    "prettier-plugin-packagejson": "^2.2.18",
-    "react-app-alias": "^2.2.0",
-    "tailwindcss": "^3.1.4"
+    "@craco/craco": "^7.0.0",
+    "prettier": "^2.8.1",
+    "prettier-plugin-organize-imports": "^3.2.1",
+    "prettier-plugin-packagejson": "^2.3.0",
+    "react-app-alias": "^2.2.2",
+    "tailwindcss": "^3.2.4"
   }
 }
