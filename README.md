@@ -39,13 +39,13 @@ npm install
 ### run in the local environment
 
 ```shell
-npm link --force
+npm link
 ```
 
 ### clear development
 
 ```shell
-npm unlink --force
+npm unlink create-cxiaof-react-cli -g
 ```
 
 ## Folder Structure
