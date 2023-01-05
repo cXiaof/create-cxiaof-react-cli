@@ -1,5 +1,0 @@
-window.DEV_ENV = process.env.NODE_ENV === 'development'
-
-document.oncontextmenu = () => false
-
-export {}

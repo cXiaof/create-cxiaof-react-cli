@@ -1,5 +1,5 @@
 /// <reference types="react-scripts" />
 
-interface Window {
-  DEV_ENV: boolean
-}
+interface Window {}
+
+type Obj = Record<string, any>
