@@ -2,20 +2,75 @@ import NP from 'number-precision'
 
 NP.enableBoundaryChecking(false)
 
+// eslint-disable-next-line no-extend-native
+Object.defineProperties(Number.prototype, {
+  strip: {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: function (precision) {
+      return NP.strip(this, precision)
+    },
+  },
+  plus: {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: function (...nums) {
+      return NP.plus(this, ...nums)
+    },
+  },
+  minus: {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: function (...nums) {
+      return NP.minus(this, ...nums)
+    },
+  },
+  times: {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: function (...nums) {
+      return NP.times(this, ...nums)
+    },
+  },
+  divide: {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: function (...nums) {
+      return NP.divide(this, ...nums)
+    },
+  },
+  round: {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: function (decimal) {
+      return NP.round(this, decimal)
+    },
+  },
+})
+
 export const calcMinUint = (num1 = 1, num2 = 1) => {
   return Math.max(0, Math.min(num1, num2))
 }
 
 export const calcAverage = (arr, ratio = 20) => {
-  const [num1, num2, ...others] = arr
-  return NP.round(NP.divide(NP.plus(num1, num2, ...others), arr.length), ratio)
+  const [first, ...others] = arr
+  return first
+    .plus(...others)
+    .divide(arr.length)
+    .round(ratio)
 }
 
 export const calcGolden = (num, reverse) => {
-  const gsa = NP.divide(NP.minus(Math.sqrt(5), 1), 2)
-  const golden = NP.round(gsa, 3)
-  const divisor = reverse ? NP.minus(1, golden) : golden
-  return NP.times(num, divisor)
+  const gsa = Math.sqrt(5).minus(1).divide(2)
+  const golden = gsa.round(3)
+  const divisor = reverse ? (1).minus(golden) : golden
+  return num.times(divisor)
 }
 
 export const calcArrayDepth = (arr) => {
@@ -38,5 +93,3 @@ export const getTextWidth = (txt) => {
   }
   return result
 }
-
-export default NP

@@ -2,20 +2,75 @@ import NP from 'number-precision'
 
 NP.enableBoundaryChecking(false)
 
+// eslint-disable-next-line no-extend-native
+Object.defineProperties(Number.prototype, {
+  strip: {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: function (precision?: number) {
+      return NP.strip(this, precision)
+    },
+  },
+  plus: {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: function (...nums: Parameters<typeof NP['plus']>) {
+      return NP.plus(this, ...nums)
+    },
+  },
+  minus: {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: function (...nums: Parameters<typeof NP['minus']>) {
+      return NP.minus(this, ...nums)
+    },
+  },
+  times: {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: function (...nums: Parameters<typeof NP['times']>) {
+      return NP.times(this, ...nums)
+    },
+  },
+  divide: {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: function (...nums: Parameters<typeof NP['divide']>) {
+      return NP.divide(this, ...nums)
+    },
+  },
+  round: {
+    writable: false,
+    enumerable: false,
+    configurable: false,
+    value: function (decimal: number) {
+      return NP.round(this, decimal)
+    },
+  },
+})
+
 export const calcMinUint = (num1: number = 1, num2: number = 1): number => {
   return Math.max(0, Math.min(num1, num2))
 }
 
 export const calcAverage = (arr: number[], ratio: number = 20): number => {
-  const [num1, num2, ...others] = arr
-  return NP.round(NP.divide(NP.plus(num1, num2, ...others), arr.length), ratio)
+  const [first, ...others] = arr
+  return first
+    .plus(...others)
+    .divide(arr.length)
+    .round(ratio)
 }
 
-export const calcGolden = (num: number, reverse: boolean): number => {
-  const gsa = NP.divide(NP.minus(Math.sqrt(5), 1), 2)
-  const golden = NP.round(gsa, 3)
-  const divisor = reverse ? NP.minus(1, golden) : golden
-  return NP.times(num, divisor)
+export const calcGolden = (num: number, reverse?: boolean): number => {
+  const gsa = Math.sqrt(5).minus(1).divide(2)
+  const golden = gsa.round(3)
+  const divisor = reverse ? (1).minus(golden) : golden
+  return num.times(divisor)
 }
 
 export const calcArrayDepth = (arr: any[]): number => {
@@ -38,5 +93,3 @@ export const getTextWidth = (txt: string): number => {
   }
   return result
 }
-
-export default NP
