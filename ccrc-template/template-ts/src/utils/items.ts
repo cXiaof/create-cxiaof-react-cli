@@ -12,9 +12,9 @@ export const packAttrToArr = <T>(
   return arr
 }
 
-export const putEleIndexFirst = <T>(array: T[], index: number): T[] => {
-  let arr = [...array]
-  const [target] = arr.splice(index, 1)
-  arr.unshift(target)
-  return arr
+export const putEleIndexFirst = <T>(arr: T[], index: number): T[] => {
+  let clone = [...arr]
+  const [target] = clone.splice(index, 1)
+  clone.unshift(target)
+  return clone
 }
