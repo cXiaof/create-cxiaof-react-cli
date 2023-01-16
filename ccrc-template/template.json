@@ -6,7 +6,7 @@
       "build": "craco build",
       "dev": "craco start",
       "format": "prettier --loglevel silent --write \"src/**/*.{html,css,js,jsx,ts,tsx,md,json}\"",
-      "prepublish": "npm run format",
+      "postinstall": "npm run format",
       "start": "craco start"
     }
   },
