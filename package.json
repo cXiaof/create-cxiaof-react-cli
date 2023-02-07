@@ -1,6 +1,6 @@
 {
   "name": "create-cxiaof-react-cli",
-  "version": "1.6.1",
+  "version": "1.6.2",
   "bugs": {
     "url": "https://github.com/cXiaof/create-cxiaof-react-cli/issues"
   },
@@ -27,11 +27,11 @@
     "util": "^0.12.5"
   },
   "devDependencies": {
-    "@types/node": "^18.11.18",
-    "@types/react": "^18.0.26",
+    "@types/node": "^18.13.0",
+    "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "prettier": "^2.8.3",
-    "prettier-plugin-packagejson": "^2.3.0"
+    "prettier-plugin-packagejson": "^2.4.2"
   },
   "engines": {
     "node": ">=14"
