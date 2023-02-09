@@ -1,11 +1,5 @@
-import * as asyncUtils from './async'
-import * as calcUtils from './calc'
-import * as itemsUtils from './items'
+import * as async from './async'
+import * as calc from './calc'
+import * as items from './items'
 
-const utils = {
-  async: asyncUtils,
-  calc: calcUtils,
-  items: itemsUtils,
-}
-
-export default utils
+export { async, calc, items }

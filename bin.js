@@ -925,7 +925,7 @@ var require_suggestSimilar = __commonJS({
 var require_command = __commonJS({
   "node_modules/.pnpm/commander@10.0.0/node_modules/commander/lib/command.js"(exports) {
     var EventEmitter = require("events").EventEmitter;
-    var childProcess2 = require("child_process");
+    var childProcess3 = require("child_process");
     var path2 = require("path");
     var fs2 = require("fs");
     var process8 = require("process");
@@ -1802,14 +1802,14 @@ Expecting one of '${allowedValues.join("', '")}'`);
           if (launchWithNode) {
             args.unshift(executableFile);
             args = incrementNodeInspectorPort(process8.execArgv).concat(args);
-            proc = childProcess2.spawn(process8.argv[0], args, { stdio: "inherit" });
+            proc = childProcess3.spawn(process8.argv[0], args, { stdio: "inherit" });
           } else {
-            proc = childProcess2.spawn(executableFile, args, { stdio: "inherit" });
+            proc = childProcess3.spawn(executableFile, args, { stdio: "inherit" });
           }
         } else {
           args.unshift(executableFile);
           args = incrementNodeInspectorPort(process8.execArgv).concat(args);
-          proc = childProcess2.spawn(process8.execPath, args, { stdio: "inherit" });
+          proc = childProcess3.spawn(process8.execPath, args, { stdio: "inherit" });
         }
         if (!proc.killed) {
           const signals = ["SIGUSR1", "SIGUSR2", "SIGTERM", "SIGINT", "SIGHUP"];
@@ -3279,7 +3279,7 @@ var require_graceful_fs = __commonJS({
     var polyfills = require_polyfills();
     var legacy = require_legacy_streams();
     var clone = require_clone();
-    var util2 = require("util");
+    var util3 = require("util");
     var gracefulQueue;
     var previousSymbol;
     if (typeof Symbol === "function" && typeof Symbol.for === "function") {
@@ -3299,11 +3299,11 @@ var require_graceful_fs = __commonJS({
       });
     }
     var debug = noop;
-    if (util2.debuglog)
-      debug = util2.debuglog("gfs4");
+    if (util3.debuglog)
+      debug = util3.debuglog("gfs4");
     else if (/\bgfs4\b/i.test(process.env.NODE_DEBUG || ""))
       debug = function() {
-        var m = util2.format.apply(util2, arguments);
+        var m = util3.format.apply(util3, arguments);
         m = "GFS4: " + m.split(/\n/).join("\nGFS4: ");
         console.error(m);
       };
@@ -3875,7 +3875,7 @@ var require_stat = __commonJS({
     "use strict";
     var fs2 = require_fs();
     var path2 = require("path");
-    var util2 = require("util");
+    var util3 = require("util");
     function getStats(src, dest, opts) {
       const statFunc = opts.dereference ? (file) => fs2.stat(file, { bigint: true }) : (file) => fs2.lstat(file, { bigint: true });
       return Promise.all([
@@ -3901,7 +3901,7 @@ var require_stat = __commonJS({
       return { srcStat, destStat };
     }
     function checkPaths(src, dest, funcName, opts, cb) {
-      util2.callbackify(getStats)(src, dest, opts, (err, stats) => {
+      util3.callbackify(getStats)(src, dest, opts, (err, stats) => {
         if (err)
           return cb(err);
         const { srcStat, destStat } = stats;
@@ -7796,14 +7796,14 @@ var require_inherits_browser = __commonJS({
 var require_inherits = __commonJS({
   "node_modules/.pnpm/inherits@2.0.4/node_modules/inherits/inherits.js"(exports, module2) {
     try {
-      util2 = require("util");
-      if (typeof util2.inherits !== "function")
+      util3 = require("util");
+      if (typeof util3.inherits !== "function")
         throw "";
-      module2.exports = util2.inherits;
+      module2.exports = util3.inherits;
     } catch (e) {
       module2.exports = require_inherits_browser();
     }
-    var util2;
+    var util3;
   }
 });
 
@@ -11058,20 +11058,66 @@ var handleErr = (error, spinner) => {
 };
 
 // src/clone.ts
-var cloneTmpl = async (name2, spinner) => {
+var ccrcTmplPath = import_path.default.join(__dirname, "ccrc-template");
+var cloneTmpl = async (name2, options2, spinner) => {
   const directory = import_path.default.join(name2);
   const handleErr2 = (error) => {
     handleErr(error, spinner);
   };
+  await cleanTmplVite(directory, handleErr2);
+  await Promise.all([
+    copyTmplCCRC(directory, options2, handleErr2),
+    mergeCCRCPkgJSON(name2)
+  ]);
+  spinner.succeed();
+};
+var cleanTmplVite = async (directory, handleErr2) => {
   await Promise.all([
     import_fs_extra.default.emptyDir(import_path.default.join(directory, "public"), handleErr2),
     import_fs_extra.default.emptyDir(import_path.default.join(directory, "src"), handleErr2)
   ]);
-  spinner.succeed();
+};
+var copyTmplCCRC = async (directory, options2, handleErr2) => {
+  const folderBase = "template";
+  const isTS = options2.template.endsWith("-ts");
+  const folderChoose = folderBase + (isTS ? "-ts" : "-js");
+  await Promise.all([
+    import_fs_extra.default.copy(import_path.default.join(ccrcTmplPath, folderBase), directory, handleErr2),
+    import_fs_extra.default.copy(import_path.default.join(ccrcTmplPath, folderChoose), directory, handleErr2)
+  ]);
+  const pathConfigJS = import_path.default.join(ccrcTmplPath, "jsconfig.json");
+  const pathConfigTS = import_path.default.join(directory, "tsconfig.json");
+  if (isTS) {
+    const jsconfigJSON = await import_fs_extra.default.readJson(pathConfigJS);
+    const tsconfigJSON = await import_fs_extra.default.readJson(pathConfigTS);
+    tsconfigJSON.compilerOptions = {
+      ...tsconfigJSON.compilerOptions,
+      ...jsconfigJSON.compilerOptions
+    };
+    await import_fs_extra.default.writeFile(pathConfigTS, JSON.stringify(tsconfigJSON));
+  } else {
+    await import_fs_extra.default.copy(pathConfigJS, directory, handleErr2);
+  }
+};
+var mergeCCRCPkgJSON = async (name2) => {
+  const pathPkgJSON = import_path.default.join(name2, "package.json");
+  const prjPkgJSON = await import_fs_extra.default.readJson(pathPkgJSON);
+  const pathTmplJSON = import_path.default.join(ccrcTmplPath, "template.json");
+  const ccrcPkgJSON = await import_fs_extra.default.readJson(pathTmplJSON);
+  const { template, dependencies, devDependencies } = ccrcPkgJSON;
+  for (const key in template) {
+    prjPkgJSON[key] = template[key];
+  }
+  prjPkgJSON.dependencies = { ...prjPkgJSON.dependencies, ...dependencies };
+  prjPkgJSON.devDependencies = {
+    ...prjPkgJSON.devDependencies,
+    ...devDependencies
+  };
+  await import_fs_extra.default.writeFile(pathPkgJSON, JSON.stringify(prjPkgJSON));
 };
 var clone_default = cloneTmpl;
 
-// src/vite.ts
+// src/install.ts
 var import_child_process = __toESM(require("child_process"));
 
 // node_modules/.pnpm/ora@6.1.2/node_modules/ora/index.js
@@ -11511,14 +11557,28 @@ function ora(options2) {
   return new Ora(options2);
 }
 
-// src/vite.ts
+// src/install.ts
 var import_util = __toESM(require("util"));
 var exec = import_util.default.promisify(import_child_process.default.exec);
+var installDeps = async (name2, options2) => {
+  const content = `- \u6B63\u5728\u5B89\u88C5\u4F9D\u8D56`;
+  const spinner = ora(content).start();
+  const cmd = `${options2.manager} install`;
+  const execOptions = { cwd: name2 };
+  await exec(cmd, execOptions).catch((error) => handleErr(error, spinner));
+  spinner.succeed();
+};
+var install_default = installDeps;
+
+// src/vite.ts
+var import_child_process2 = __toESM(require("child_process"));
+var import_util2 = __toESM(require("util"));
+var exec2 = import_util2.default.promisify(import_child_process2.default.exec);
 var initVite = async (name2, options2) => {
   const content = `- \u6B63\u5728\u62C9\u53D6\u6A21\u677F\uFF1A${options2.template}`;
   const spinner = ora(content).start();
   const cmd = `${options2.manager} create vite ${name2} --template ${options2.template}`;
-  await exec(cmd).catch((error) => handleErr(error, spinner));
+  await exec2(cmd).catch((error) => handleErr(error, spinner));
   return spinner;
 };
 var vite_default = initVite;
@@ -11534,8 +11594,11 @@ program2.parse();
 var name = program2.args[0];
 var options = program2.opts();
 console.log(source_default.yellow("\u6B63\u5728\u521B\u5EFA\u9879\u76EE"), source_default.bgMagenta(name));
-vite_default(name, options).then(async (spinnerTmpl) => {
-  await clone_default(name, spinnerTmpl);
+vite_default(name, options).then(async (spinner) => {
+  if (options.template.startsWith("react")) {
+    await clone_default(name, options, spinner);
+    await install_default(name, options);
+  }
 });
 /*! Bundled license information:
 

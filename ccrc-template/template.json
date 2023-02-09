@@ -1,5 +1,6 @@
 {
   "template": {
+    "version": "0.1.0",
     "author": "cXiaof",
     "scripts": {
       "build": "tsc && vite build",
