@@ -3,6 +3,7 @@
 import chalk from 'chalk'
 import { Command } from 'commander'
 
+import cloneTmpl from './clone'
 import initVite from './vite'
 
 import { version } from '../package.json'
@@ -24,4 +25,6 @@ const options = program.opts()
 
 console.log(chalk.yellow('正在创建项目'), chalk.bgMagenta(name))
 
-initVite(name, options)
+initVite(name, options).then(async (spinnerTmpl) => {
+  await cloneTmpl(name, spinnerTmpl)
+})

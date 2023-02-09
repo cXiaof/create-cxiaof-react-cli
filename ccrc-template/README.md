@@ -1,1 +1,0 @@
-# ccrc-template
