@@ -1,54 +1,81 @@
-# create-cxiaof-react-cli
+## create-cxiaof-react-cli
 
 ccrc 自用 react 脚手架
 
 ---
 
-## Getting Started
+### Used
 
-### create app by ccrc
+#### create app by ccrc
 
-install
+- install
 
 ```shell
-# use npm
 npm install -g create-cxiaof-react-cli
-# use yarn
-yarn global add create-cxiaof-react-cli
 ```
 
-create
+- create
+
+> Usage:  
+> **ccrc \<projectName> [options]**
+>
+> Options:  
+> **-V, --version** output the version number  
+> **-t, --template \<preset>** Vite 模板 (default: "react-ts")  
+> **-m, --manager \<management>** 包管理器 (default: "pnpm")  
+> **-map, --map** 创建为地图项目  
+> **-h, --help** display help for command
+
+example
 
 ```shell
-# use javascript
-ccrc [projectName]
-# use typescript
-ccrc [projectName] -ts
-# use specified version of dependencies
-ccrc [projectName] -sp
+# template react-ts by default
+ccrc youre_project_name
+
+# more vite template
+ccrc youre_project_name --template react
+# or
+ccrc youre_project_name -t vue
+
+# other package management
+ccrc youre_project_name --manager yarn
+# or
+ccrc youre_project_name -m npm
+
+# template react-ts with map
+ccrc youre_project_name --map
+# or
+ccrc youre_project_name -map
+
+# all options
+ccrc youre_project_name -t react -m yarn -map
 ```
 
-## develop cli
+---
 
-### Prerequisites
+### Development
+
+#### Prerequisites
 
 ```shell
 npm install
 ```
 
-### run in the local environment
+#### run in the local environment
 
 ```shell
 npm link
 ```
 
-### clear development
+#### clear development
 
 ```shell
 npm unlink create-cxiaof-react-cli -g
 ```
 
-## Folder Structure
+---
+
+### Folder Structure
 
 ```
 .
@@ -57,12 +84,12 @@ npm unlink create-cxiaof-react-cli -g
 ├─.prettierrc                               // js代码规范插件'prettier'配置
 ├─LICENSE                                   // LICENSE文件
 ├─package.json                              // packageJSON
+├─pnpm-lock.yaml                            // 依赖模块版本信息（自动生成）
 ├─README.md                                 // README文件
-├─yarn.lock                                 // 依赖模块版本信息（自动生成）
-|
-├─bin                                       // 主要目录
+├─src                                       // 开发文件目录
 |  └...                                     //
-|
+├─bin                                       // node脚本文件（自动生成）
+|  └...                                     //
 └─ccrc-template                             // 模版目录
    ├─template                               // javascript模版
    |  └...                                  //

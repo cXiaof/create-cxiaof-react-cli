@@ -1,6 +1,6 @@
 {
   "name": "create-cxiaof-react-cli",
-  "version": "1.6.2",
+  "version": "2.0.0-alpha.1",
   "bugs": {
     "url": "https://github.com/cXiaof/create-cxiaof-react-cli/issues"
   },
@@ -11,29 +11,27 @@
   "license": "MIT",
   "author": "cXiaof",
   "bin": {
-    "ccrc": "./bin/index.js"
+    "ccrc": "./bin.js"
   },
   "scripts": {
-    "f": "npm run format",
-    "format": "prettier --loglevel silent --write \"bin/*.js\""
+    "build": "esbuild src/index.ts --bundle --platform=node --outfile=bin.js",
+    "format": "prettier --loglevel silent --write \"src/*.ts\""
   },
   "dependencies": {
-    "chalk": "^4.1.2",
-    "child_process": "^1.0.2",
+    "chalk": "^5.2.0",
     "commander": "^10.0.0",
     "fs-extra": "^11.1.0",
-    "ora": "^5.4.1",
-    "path": "^0.12.7",
-    "util": "^0.12.5"
+    "ora": "^6.1.2"
   },
   "devDependencies": {
     "@types/node": "^18.13.0",
-    "@types/react": "^18.0.27",
-    "@types/react-dom": "^18.0.10",
-    "prettier": "^2.8.3",
-    "prettier-plugin-packagejson": "^2.4.2"
+    "esbuild": "^0.17.6",
+    "prettier": "^2.8.4",
+    "prettier-plugin-organize-imports": "^3.2.2",
+    "prettier-plugin-packagejson": "^2.4.2",
+    "typescript": "^4.9.5"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=14.18"
   }
 }
