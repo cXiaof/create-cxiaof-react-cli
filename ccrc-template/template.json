@@ -5,7 +5,7 @@
     "scripts": {
       "build": "tsc && vite build",
       "dev": "vite --open",
-      "format": "prettier --loglevel silent --write \"./**/*.{html,css,js,jsx,ts,tsx,md,json}\"",
+      "format": "prettier --loglevel silent --write \"./**/*.{html,css,js,jsx,ts,tsx,cjs,json,md}\"",
       "postinstall": "npm run format",
       "preview": "vite preview"
     }

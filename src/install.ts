@@ -1,3 +1,4 @@
+import chalk from 'chalk'
 import childProcess from 'child_process'
 import type { OptionValues } from 'commander'
 import ora from 'ora'
@@ -8,7 +9,7 @@ import * as utils from './utils'
 const exec = util.promisify(childProcess.exec)
 
 const installDeps = async (name: string, options: OptionValues) => {
-  const content = `- 正在安装依赖`
+  const content = chalk.white('- 安装依赖') + ' ' + chalk.cyan(options.manager)
   const spinner = ora(content).start()
 
   const cmd = `${options.manager} install`

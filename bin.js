@@ -11561,7 +11561,7 @@ function ora(options2) {
 var import_util = __toESM(require("util"));
 var exec = import_util.default.promisify(import_child_process.default.exec);
 var installDeps = async (name2, options2) => {
-  const content = `- \u6B63\u5728\u5B89\u88C5\u4F9D\u8D56`;
+  const content = source_default.white("- \u5B89\u88C5\u4F9D\u8D56") + " " + source_default.magenta(options2.manager);
   const spinner = ora(content).start();
   const cmd = `${options2.manager} install`;
   const execOptions = { cwd: name2 };
@@ -11575,7 +11575,7 @@ var import_child_process2 = __toESM(require("child_process"));
 var import_util2 = __toESM(require("util"));
 var exec2 = import_util2.default.promisify(import_child_process2.default.exec);
 var initVite = async (name2, options2) => {
-  const content = `- \u6B63\u5728\u62C9\u53D6\u6A21\u677F\uFF1A${options2.template}`;
+  const content = source_default.white("- \u62C9\u53D6\u6A21\u677F") + " " + source_default.magenta(options2.template);
   const spinner = ora(content).start();
   const cmd = `${options2.manager} create vite ${name2} --template ${options2.template}`;
   await exec2(cmd).catch((error) => handleErr(error, spinner));
@@ -11593,7 +11593,7 @@ program2.arguments("<projectName>").option("-t, --template <preset>", "Vite\u6A2
 program2.parse();
 var name = program2.args[0];
 var options = program2.opts();
-console.log(source_default.yellow("\u6B63\u5728\u521B\u5EFA\u9879\u76EE"), source_default.bgMagenta(name));
+console.log(source_default.yellow("\u6B63\u5728\u521B\u5EFA\u9879\u76EE"), source_default.bgCyan(name));
 vite_default(name, options).then(async (spinner) => {
   if (options.template.startsWith("react")) {
     await clone_default(name, options, spinner);
