@@ -1,5 +1,7 @@
 import type { OptionValues } from 'commander'
+import type { ObjectEncodingOptions } from 'fs'
 import fs from 'fs-extra'
+import fsp from 'fs/promises'
 import type { Ora } from 'ora'
 import path from 'path'
 
@@ -41,23 +43,46 @@ const copyTmplCCRC = async (
   await Promise.all([
     fs.copy(path.join(ccrcTmplPath, folderBase), directory, handleErr),
     fs.copy(path.join(ccrcTmplPath, folderChoose), directory, handleErr),
+    setAlias(directory, options, handleErr),
   ])
+}
 
-  const pathConfigJS = path.join(ccrcTmplPath, 'jsconfig.json')
-  const pathConfigTS = path.join(directory, 'tsconfig.json')
+const setAlias = async (
+  directory: string,
+  options: OptionValues,
+  handleErr: (error: any) => void,
+) => {
+  const isTS = options.template.endsWith('-ts')
+  const pathConfigTmpl = path.join(ccrcTmplPath, 'jsconfig.json')
   if (isTS) {
-    const [jsconfigJSON, tsconfigJSON] = await Promise.all([
-      fs.readJson(pathConfigJS),
+    const pathConfigTS = path.join(directory, 'tsconfig.json')
+    const [tmplConfigJSON, tsConfigJSON] = await Promise.all([
+      fs.readJson(pathConfigTmpl),
       fs.readJson(pathConfigTS),
     ])
-    tsconfigJSON.compilerOptions = {
-      ...tsconfigJSON.compilerOptions,
-      ...jsconfigJSON.compilerOptions,
+    tsConfigJSON.compilerOptions = {
+      ...tsConfigJSON.compilerOptions,
+      ...tmplConfigJSON.compilerOptions,
     }
-    await fs.writeFile(pathConfigTS, JSON.stringify(tsconfigJSON))
+    await fsp.writeFile(pathConfigTS, JSON.stringify(tsConfigJSON))
   } else {
-    await fs.copy(pathConfigJS, directory, handleErr)
+    const pathConfigJS = path.join(directory, 'jsconfig.json')
+    await fsp.copyFile(pathConfigTmpl, pathConfigJS)
   }
+  const configFileName = `vite.config.${isTS ? 'ts' : 'js'}`
+  const pathConfigVite = path.join(directory, configFileName)
+  const encodingOpts: ObjectEncodingOptions = { encoding: 'utf-8' }
+  const result = await fsp.readFile(pathConfigVite, encodingOpts)
+  const dataStr =
+    result.slice(0, -3) +
+    `resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
+  }
+})
+`
+  await fsp.writeFile(pathConfigVite, dataStr, encodingOpts)
 }
 
 const mergeCCRCPkgJSON = async (name: string) => {

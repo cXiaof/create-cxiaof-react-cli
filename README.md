@@ -23,34 +23,40 @@ npm install -g create-cxiaof-react-cli
 > **-V, --version** output the version number  
 > **-t, --template \<preset>** Vite 模板 (default: "react-ts")  
 > **-m, --manager \<management>** 包管理器 (default: "pnpm")  
+> **-no, --noinstall** 不安装依赖  
 > **[todo]** -map, --map 创建为地图项目  
 > **-h, --help** display help for command
 
 example
 
 ```shell
-# pnpm + react + ts by default
+# 全部采用默认值：pnpm + react + ts
 ccrc youre_project_name
 
-# more vite template
+# 使用其他vite模板
 ccrc youre_project_name --template react
 # or
 ccrc youre_project_name -t vue
 
-# other package management
+# 使用其他包管理器
 ccrc youre_project_name --manager yarn
 # or
 ccrc youre_project_name -m npm
 
+# 不自动安装依赖
+ccrc youre_project_name --noinstall
+# or
+ccrc youre_project_name -no
+
 # ---[todo]---
-# template with map
+# 创建为地图项目
 ccrc youre_project_name --map
 # or
 ccrc youre_project_name -map
 # ------------
 
-# all options
-ccrc youre_project_name -t react -m yarn -map
+# 使用所有参数
+ccrc youre_project_name -t react -m yarn -map -no
 ```
 
 ---

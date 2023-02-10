@@ -11046,6 +11046,7 @@ var {
 
 // src/clone.ts
 var import_fs_extra = __toESM(require_lib());
+var import_promises = __toESM(require("fs/promises"));
 var import_path = __toESM(require("path"));
 
 // src/utils.ts
@@ -11083,23 +11084,40 @@ var copyTmplCCRC = async (directory, options2, handleErr2) => {
   const folderChoose = folderBase + (isTS ? "-ts" : "-js");
   await Promise.all([
     import_fs_extra.default.copy(import_path.default.join(ccrcTmplPath, folderBase), directory, handleErr2),
-    import_fs_extra.default.copy(import_path.default.join(ccrcTmplPath, folderChoose), directory, handleErr2)
+    import_fs_extra.default.copy(import_path.default.join(ccrcTmplPath, folderChoose), directory, handleErr2),
+    setAlias(directory, options2, handleErr2)
   ]);
-  const pathConfigJS = import_path.default.join(ccrcTmplPath, "jsconfig.json");
-  const pathConfigTS = import_path.default.join(directory, "tsconfig.json");
+};
+var setAlias = async (directory, options2, handleErr2) => {
+  const isTS = options2.template.endsWith("-ts");
+  const pathConfigTmpl = import_path.default.join(ccrcTmplPath, "jsconfig.json");
   if (isTS) {
-    const [jsconfigJSON, tsconfigJSON] = await Promise.all([
-      import_fs_extra.default.readJson(pathConfigJS),
+    const pathConfigTS = import_path.default.join(directory, "tsconfig.json");
+    const [tmplConfigJSON, tsConfigJSON] = await Promise.all([
+      import_fs_extra.default.readJson(pathConfigTmpl),
       import_fs_extra.default.readJson(pathConfigTS)
     ]);
-    tsconfigJSON.compilerOptions = {
-      ...tsconfigJSON.compilerOptions,
-      ...jsconfigJSON.compilerOptions
+    tsConfigJSON.compilerOptions = {
+      ...tsConfigJSON.compilerOptions,
+      ...tmplConfigJSON.compilerOptions
     };
-    await import_fs_extra.default.writeFile(pathConfigTS, JSON.stringify(tsconfigJSON));
+    await import_promises.default.writeFile(pathConfigTS, JSON.stringify(tsConfigJSON));
   } else {
-    await import_fs_extra.default.copy(pathConfigJS, directory, handleErr2);
+    const pathConfigJS = import_path.default.join(directory, "jsconfig.json");
+    await import_promises.default.copyFile(pathConfigTmpl, pathConfigJS);
   }
+  const configFileName = `vite.config.${isTS ? "ts" : "js"}`;
+  const pathConfigVite = import_path.default.join(directory, configFileName);
+  const encodingOpts = { encoding: "utf-8" };
+  const result = await import_promises.default.readFile(pathConfigVite, encodingOpts);
+  const dataStr = result.slice(0, -3) + `resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src')
+    }
+  }
+})
+`;
+  await import_promises.default.writeFile(pathConfigVite, dataStr, encodingOpts);
 };
 var mergeCCRCPkgJSON = async (name2) => {
   const pathPkgJSON = import_path.default.join(name2, "package.json");
@@ -11593,7 +11611,7 @@ var version = "2.0.0-alpha.1";
 // src/index.ts
 var program2 = new Command();
 program2.name("ccrc").version(version);
-program2.arguments("<projectName>").option("-t, --template <preset>", "Vite\u6A21\u677F", "react-ts").option("-m, --manager <management>", "\u5305\u7BA1\u7406\u5668", "pnpm").option("-map, --map", "\u521B\u5EFA\u4E3A\u5730\u56FE\u9879\u76EE");
+program2.arguments("<projectName>").option("-t, --template <preset>", "Vite\u6A21\u677F", "react-ts").option("-m, --manager <management>", "\u5305\u7BA1\u7406\u5668", "pnpm").option("-no, --noinstall", "\u4E0D\u5B89\u88C5\u4F9D\u8D56").option("-map, --map", "\u521B\u5EFA\u4E3A\u5730\u56FE\u9879\u76EE");
 program2.parse();
 var name = program2.args[0];
 var options = program2.opts();
@@ -11602,7 +11620,9 @@ vite_default(name, options).then(async (spinner) => {
   if (options.template.startsWith("react")) {
     await clone_default(name, options, spinner);
   }
-  await install_default(name, options);
+  if (!options.noinstall) {
+    await install_default(name, options);
+  }
 });
 /*! Bundled license information:
 

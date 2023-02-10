@@ -17,6 +17,7 @@ program
   .arguments('<projectName>')
   .option('-t, --template <preset>', 'Vite模板', 'react-ts')
   .option('-m, --manager <management>', '包管理器', 'pnpm')
+  .option('-no, --noinstall', '不自动安装依赖')
   .option('-map, --map', '创建为地图项目')
 
 program.parse()
@@ -30,5 +31,7 @@ initVite(name, options).then(async (spinner) => {
   if (options.template.startsWith('react')) {
     await cloneTmpl(name, options, spinner)
   }
-  await installDeps(name, options)
+  if (!options.noinstall) {
+    await installDeps(name, options)
+  }
 })
