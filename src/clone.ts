@@ -7,6 +7,7 @@ import path from 'path'
 
 import * as utils from './utils'
 
+const encodingOpts: ObjectEncodingOptions = { encoding: 'utf-8' }
 const ccrcTmplPath = path.join(__dirname, 'ccrc-template')
 
 const cloneTmpl = async (name: string, options: OptionValues, spinner: Ora) => {
@@ -41,17 +42,33 @@ const copyTmplCCRC = async (
   const isTS = options.template.endsWith('-ts')
   const folderChoose = folderBase + (isTS ? '-ts' : '-js')
   await Promise.all([
+    improveHTML(directory),
     fs.copy(path.join(ccrcTmplPath, folderBase), directory, handleErr),
     fs.copy(path.join(ccrcTmplPath, folderChoose), directory, handleErr),
-    setAlias(directory, options, handleErr),
+    setAlias(directory, options),
   ])
 }
 
-const setAlias = async (
-  directory: string,
-  options: OptionValues,
-  handleErr: (error: any) => void,
-) => {
+const improveHTML = async (directory: string) => {
+  const pathHTML = path.join(directory, 'index.html')
+  const result = (await fsp.readFile(pathHTML, encodingOpts)) as string
+  const dataStr = result.replace(
+    /<html[\s\S]*<body>/,
+    `<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="author" content="cXiaof" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CCRC-APP</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>`,
+  )
+  await fsp.writeFile(pathHTML, dataStr, encodingOpts)
+}
+
+const setAlias = async (directory: string, options: OptionValues) => {
   const isTS = options.template.endsWith('-ts')
   const pathConfigTmpl = path.join(ccrcTmplPath, 'jsconfig.json')
   if (isTS) {
@@ -71,7 +88,6 @@ const setAlias = async (
   }
   const configFileName = `vite.config.${isTS ? 'ts' : 'js'}`
   const pathConfigVite = path.join(directory, configFileName)
-  const encodingOpts: ObjectEncodingOptions = { encoding: 'utf-8' }
   const result = await fsp.readFile(pathConfigVite, encodingOpts)
   const dataStr =
     `import path from 'path'

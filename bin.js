@@ -11059,6 +11059,7 @@ var handleErr = (error, spinner) => {
 };
 
 // src/clone.ts
+var encodingOpts = { encoding: "utf-8" };
 var ccrcTmplPath = import_path.default.join(__dirname, "ccrc-template");
 var cloneTmpl = async (name2, options2, spinner) => {
   const directory = import_path.default.join(name2);
@@ -11083,12 +11084,31 @@ var copyTmplCCRC = async (directory, options2, handleErr2) => {
   const isTS = options2.template.endsWith("-ts");
   const folderChoose = folderBase + (isTS ? "-ts" : "-js");
   await Promise.all([
+    improveHTML(directory),
     import_fs_extra.default.copy(import_path.default.join(ccrcTmplPath, folderBase), directory, handleErr2),
     import_fs_extra.default.copy(import_path.default.join(ccrcTmplPath, folderChoose), directory, handleErr2),
-    setAlias(directory, options2, handleErr2)
+    setAlias(directory, options2)
   ]);
 };
-var setAlias = async (directory, options2, handleErr2) => {
+var improveHTML = async (directory) => {
+  const pathHTML = import_path.default.join(directory, "index.html");
+  const result = await import_promises.default.readFile(pathHTML, encodingOpts);
+  const dataStr = result.replace(
+    /<html[\s\S]*<body>/,
+    `<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="author" content="cXiaof" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CCRC-APP</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>`
+  );
+  await import_promises.default.writeFile(pathHTML, dataStr, encodingOpts);
+};
+var setAlias = async (directory, options2) => {
   const isTS = options2.template.endsWith("-ts");
   const pathConfigTmpl = import_path.default.join(ccrcTmplPath, "jsconfig.json");
   if (isTS) {
@@ -11108,7 +11128,6 @@ var setAlias = async (directory, options2, handleErr2) => {
   }
   const configFileName = `vite.config.${isTS ? "ts" : "js"}`;
   const pathConfigVite = import_path.default.join(directory, configFileName);
-  const encodingOpts = { encoding: "utf-8" };
   const result = await import_promises.default.readFile(pathConfigVite, encodingOpts);
   const dataStr = `import path from 'path'
 ` + result.slice(0, -3) + `resolve: {
