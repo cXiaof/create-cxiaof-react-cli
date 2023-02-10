@@ -11088,8 +11088,10 @@ var copyTmplCCRC = async (directory, options2, handleErr2) => {
   const pathConfigJS = import_path.default.join(ccrcTmplPath, "jsconfig.json");
   const pathConfigTS = import_path.default.join(directory, "tsconfig.json");
   if (isTS) {
-    const jsconfigJSON = await import_fs_extra.default.readJson(pathConfigJS);
-    const tsconfigJSON = await import_fs_extra.default.readJson(pathConfigTS);
+    const [jsconfigJSON, tsconfigJSON] = await Promise.all([
+      import_fs_extra.default.readJson(pathConfigJS),
+      import_fs_extra.default.readJson(pathConfigTS)
+    ]);
     tsconfigJSON.compilerOptions = {
       ...tsconfigJSON.compilerOptions,
       ...jsconfigJSON.compilerOptions
@@ -11101,9 +11103,11 @@ var copyTmplCCRC = async (directory, options2, handleErr2) => {
 };
 var mergeCCRCPkgJSON = async (name2) => {
   const pathPkgJSON = import_path.default.join(name2, "package.json");
-  const prjPkgJSON = await import_fs_extra.default.readJson(pathPkgJSON);
   const pathTmplJSON = import_path.default.join(ccrcTmplPath, "template.json");
-  const ccrcPkgJSON = await import_fs_extra.default.readJson(pathTmplJSON);
+  const [prjPkgJSON, ccrcPkgJSON] = await Promise.all([
+    import_fs_extra.default.readJson(pathPkgJSON),
+    import_fs_extra.default.readJson(pathTmplJSON)
+  ]);
   const { template, dependencies, devDependencies } = ccrcPkgJSON;
   for (const key in template) {
     prjPkgJSON[key] = template[key];
@@ -11561,7 +11565,7 @@ function ora(options2) {
 var import_util = __toESM(require("util"));
 var exec = import_util.default.promisify(import_child_process.default.exec);
 var installDeps = async (name2, options2) => {
-  const content = source_default.white("- \u5B89\u88C5\u4F9D\u8D56") + " " + source_default.magenta(options2.manager);
+  const content = source_default.white("- \u5B89\u88C5\u4F9D\u8D56") + " " + source_default.cyan(options2.manager);
   const spinner = ora(content).start();
   const cmd = `${options2.manager} install`;
   const execOptions = { cwd: name2 };
@@ -11575,7 +11579,7 @@ var import_child_process2 = __toESM(require("child_process"));
 var import_util2 = __toESM(require("util"));
 var exec2 = import_util2.default.promisify(import_child_process2.default.exec);
 var initVite = async (name2, options2) => {
-  const content = source_default.white("- \u62C9\u53D6\u6A21\u677F") + " " + source_default.magenta(options2.template);
+  const content = source_default.white("- \u62C9\u53D6\u6A21\u677F") + " " + source_default.cyan(options2.template);
   const spinner = ora(content).start();
   const cmd = `${options2.manager} create vite ${name2} --template ${options2.template}`;
   await exec2(cmd).catch((error) => handleErr(error, spinner));
@@ -11593,12 +11597,12 @@ program2.arguments("<projectName>").option("-t, --template <preset>", "Vite\u6A2
 program2.parse();
 var name = program2.args[0];
 var options = program2.opts();
-console.log(source_default.yellow("\u6B63\u5728\u521B\u5EFA\u9879\u76EE"), source_default.bgCyan(name));
+console.log(source_default.yellow("\u6B63\u5728\u521B\u5EFA\u9879\u76EE"), source_default.bgMagenta(name));
 vite_default(name, options).then(async (spinner) => {
   if (options.template.startsWith("react")) {
     await clone_default(name, options, spinner);
-    await install_default(name, options);
   }
+  await install_default(name, options);
 });
 /*! Bundled license information:
 

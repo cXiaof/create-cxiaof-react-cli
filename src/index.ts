@@ -29,6 +29,6 @@ console.log(chalk.yellow('正在创建项目'), chalk.bgMagenta(name))
 initVite(name, options).then(async (spinner) => {
   if (options.template.startsWith('react')) {
     await cloneTmpl(name, options, spinner)
-    await installDeps(name, options)
   }
+  await installDeps(name, options)
 })

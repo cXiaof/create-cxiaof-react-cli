@@ -46,8 +46,10 @@ const copyTmplCCRC = async (
   const pathConfigJS = path.join(ccrcTmplPath, 'jsconfig.json')
   const pathConfigTS = path.join(directory, 'tsconfig.json')
   if (isTS) {
-    const jsconfigJSON = await fs.readJson(pathConfigJS)
-    const tsconfigJSON = await fs.readJson(pathConfigTS)
+    const [jsconfigJSON, tsconfigJSON] = await Promise.all([
+      fs.readJson(pathConfigJS),
+      fs.readJson(pathConfigTS),
+    ])
     tsconfigJSON.compilerOptions = {
       ...tsconfigJSON.compilerOptions,
       ...jsconfigJSON.compilerOptions,
@@ -60,10 +62,11 @@ const copyTmplCCRC = async (
 
 const mergeCCRCPkgJSON = async (name: string) => {
   const pathPkgJSON = path.join(name, 'package.json')
-  const prjPkgJSON = await fs.readJson(pathPkgJSON)
-
   const pathTmplJSON = path.join(ccrcTmplPath, 'template.json')
-  const ccrcPkgJSON = await fs.readJson(pathTmplJSON)
+  const [prjPkgJSON, ccrcPkgJSON] = await Promise.all([
+    fs.readJson(pathPkgJSON),
+    fs.readJson(pathTmplJSON),
+  ])
   const { template, dependencies, devDependencies } = ccrcPkgJSON
 
   for (const key in template) {
