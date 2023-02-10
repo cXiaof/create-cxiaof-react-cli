@@ -90,15 +90,15 @@ npm unlink create-cxiaof-react-cli -g
 ├─.editorconfig                             // 编辑器代码规范插件'EditorConfig'配置
 ├─.gitignore                                // git忽略同步的文件及目录
 ├─.prettierrc                               // js代码规范插件'prettier'配置
+├─bin.js                                    // bin脚本产物（自动生成）
 ├─LICENSE                                   // LICENSE文件
 ├─package.json                              // packageJSON
 ├─pnpm-lock.yaml                            // 依赖模块版本信息（自动生成）
 ├─README.md                                 // README文件
 ├─src                                       // 开发文件目录
 |  └...                                     //
-├─bin                                       // node脚本文件（自动生成）
-|  └...                                     //
 └─ccrc-template                             // 模版目录
+   ├─jsconfig.json                          // alias配置文件
    ├─template.json                          // packageJSON补充项模版文件
    ├─template                               // 通用模版文件
    |  └...                                  //

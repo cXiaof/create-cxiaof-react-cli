@@ -11110,7 +11110,8 @@ var setAlias = async (directory, options2, handleErr2) => {
   const pathConfigVite = import_path.default.join(directory, configFileName);
   const encodingOpts = { encoding: "utf-8" };
   const result = await import_promises.default.readFile(pathConfigVite, encodingOpts);
-  const dataStr = result.slice(0, -3) + `resolve: {
+  const dataStr = `import path from 'path'
+` + result.slice(0, -3) + `resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src')
     }
@@ -11592,6 +11593,20 @@ var installDeps = async (name2, options2) => {
 };
 var install_default = installDeps;
 
+// src/tips.ts
+var showTips = (name2, options2) => {
+  console.log(
+    source_default.bgMagenta("CCRC-APP"),
+    source_default.bgCyan(name2),
+    source_default.green("\u521B\u5EFA\u5B8C\u6BD5\u221A")
+  );
+  const cd = source_default.magenta("cd ") + source_default.cyan(name2) + source_default.magenta(";");
+  const manager = source_default.cyan(options2.manager);
+  console.log(source_default.yellow("\u68C0\u67E5\u66F4\u65B0:"), cd, manager, source_default.magenta("outdated"));
+  console.log(source_default.yellow("\u5FEB\u901F\u5F00\u59CB:"), cd, manager, source_default.magenta("dev"));
+};
+var tips_default = showTips;
+
 // src/vite.ts
 var import_child_process2 = __toESM(require("child_process"));
 var import_util2 = __toESM(require("util"));
@@ -11611,11 +11626,11 @@ var version = "2.0.0-alpha.1";
 // src/index.ts
 var program2 = new Command();
 program2.name("ccrc").version(version);
-program2.arguments("<projectName>").option("-t, --template <preset>", "Vite\u6A21\u677F", "react-ts").option("-m, --manager <management>", "\u5305\u7BA1\u7406\u5668", "pnpm").option("-no, --noinstall", "\u4E0D\u5B89\u88C5\u4F9D\u8D56").option("-map, --map", "\u521B\u5EFA\u4E3A\u5730\u56FE\u9879\u76EE");
+program2.arguments("<projectName>").option("-t, --template <preset>", "Vite\u6A21\u677F", "react-ts").option("-m, --manager <management>", "\u5305\u7BA1\u7406\u5668", "pnpm").option("-no, --noinstall", "\u4E0D\u81EA\u52A8\u5B89\u88C5\u4F9D\u8D56").option("-map, --map", "\u521B\u5EFA\u4E3A\u5730\u56FE\u9879\u76EE");
 program2.parse();
 var name = program2.args[0];
 var options = program2.opts();
-console.log(source_default.yellow("\u6B63\u5728\u521B\u5EFA\u9879\u76EE"), source_default.bgMagenta(name));
+console.log(source_default.yellow("\u6B63\u5728\u521B\u5EFA\u9879\u76EE"), source_default.bgCyan(name));
 vite_default(name, options).then(async (spinner) => {
   if (options.template.startsWith("react")) {
     await clone_default(name, options, spinner);
@@ -11623,6 +11638,7 @@ vite_default(name, options).then(async (spinner) => {
   if (!options.noinstall) {
     await install_default(name, options);
   }
+  tips_default(name, options);
 });
 /*! Bundled license information:
 

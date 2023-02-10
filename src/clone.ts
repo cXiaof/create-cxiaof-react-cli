@@ -64,7 +64,7 @@ const setAlias = async (
       ...tsConfigJSON.compilerOptions,
       ...tmplConfigJSON.compilerOptions,
     }
-    await fsp.writeFile(pathConfigTS, JSON.stringify(tsConfigJSON))
+    await fsp.writeFile(pathConfigTS, JSON.stringify(tsConfigJSON, null, 2))
   } else {
     const pathConfigJS = path.join(directory, 'jsconfig.json')
     await fsp.copyFile(pathConfigTmpl, pathConfigJS)
@@ -74,6 +74,8 @@ const setAlias = async (
   const encodingOpts: ObjectEncodingOptions = { encoding: 'utf-8' }
   const result = await fsp.readFile(pathConfigVite, encodingOpts)
   const dataStr =
+    `import path from 'path'
+` +
     result.slice(0, -3) +
     `resolve: {
     alias: {
@@ -103,7 +105,7 @@ const mergeCCRCPkgJSON = async (name: string) => {
     ...devDependencies,
   }
 
-  await fs.writeFile(pathPkgJSON, JSON.stringify(prjPkgJSON))
+  await fs.writeFile(pathPkgJSON, JSON.stringify(prjPkgJSON, null, 2))
 }
 
 export default cloneTmpl

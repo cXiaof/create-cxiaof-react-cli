@@ -5,6 +5,7 @@ import { Command } from 'commander'
 
 import cloneTmpl from './clone'
 import installDeps from './install'
+import showTips from './tips'
 import initVite from './vite'
 
 import { version } from '../package.json'
@@ -25,7 +26,7 @@ program.parse()
 const name = program.args[0]
 const options = program.opts()
 
-console.log(chalk.yellow('正在创建项目'), chalk.bgMagenta(name))
+console.log(chalk.yellow('正在创建项目'), chalk.bgCyan(name))
 
 initVite(name, options).then(async (spinner) => {
   if (options.template.startsWith('react')) {
@@ -34,4 +35,5 @@ initVite(name, options).then(async (spinner) => {
   if (!options.noinstall) {
     await installDeps(name, options)
   }
+  showTips(name, options)
 })
