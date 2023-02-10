@@ -7,12 +7,14 @@ import path from 'path'
 
 import * as utils from './utils'
 
+type ErrHandler = (error: any) => void
+
 const encodingOpts: ObjectEncodingOptions = { encoding: 'utf-8' }
 const ccrcTmplPath = path.join(__dirname, 'ccrc-template')
 
 const cloneTmpl = async (name: string, options: OptionValues, spinner: Ora) => {
   const directory = path.join(name)
-  const handleErr = (error) => {
+  const handleErr: ErrHandler = (error) => {
     utils.handleErr(error, spinner)
   }
   await cleanTmplVite(directory, handleErr)
@@ -23,10 +25,7 @@ const cloneTmpl = async (name: string, options: OptionValues, spinner: Ora) => {
   spinner.succeed()
 }
 
-const cleanTmplVite = async (
-  directory: string,
-  handleErr: (error: any) => void,
-) => {
+const cleanTmplVite = async (directory: string, handleErr: ErrHandler) => {
   await Promise.all([
     fs.emptyDir(path.join(directory, 'public'), handleErr),
     fs.emptyDir(path.join(directory, 'src'), handleErr),
@@ -36,36 +35,49 @@ const cleanTmplVite = async (
 const copyTmplCCRC = async (
   directory: string,
   options: OptionValues,
-  handleErr: (error: any) => void,
+  handleErr: ErrHandler,
 ) => {
   const folderBase = 'template'
-  const isTS = options.template.endsWith('-ts')
-  const folderChoose = folderBase + (isTS ? '-ts' : '-js')
+  let folderChoose = folderBase
+  folderChoose += options.template.endsWith('-ts') ? '-ts' : '-js'
+  if (options.map) folderChoose += '-map'
+
   await Promise.all([
-    improveHTML(directory),
+    improveHTML(directory, options),
     fs.copy(path.join(ccrcTmplPath, folderBase), directory, handleErr),
     fs.copy(path.join(ccrcTmplPath, folderChoose), directory, handleErr),
     setAlias(directory, options),
   ])
 }
 
-const improveHTML = async (directory: string) => {
+const improveHTML = async (directory: string, options: OptionValues) => {
   const pathHTML = path.join(directory, 'index.html')
   const result = (await fsp.readFile(pathHTML, encodingOpts)) as string
-  const dataStr = result.replace(
-    /<html[\s\S]*<body>/,
-    `<html lang="zh-cmn-Hans">
+  const dataStr = result.replace(/<html[\s\S]*<body>/, getHTMLBody(options))
+  await fsp.writeFile(pathHTML, dataStr, encodingOpts)
+}
+
+const getHTMLBody = (options: OptionValues) => {
+  const replacePrefix = `<html lang="zh-cmn-Hans">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="author" content="cXiaof" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CCRC-APP</title>
+    <title>CCRC-APP</title>`
+  const maptalksDeps = `
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/maptalks/dist/maptalks.css"
+    />
+    <script src="https://unpkg.com/maptalks/dist/maptalks.min.js"></script>`
+  const replaceSuffix = `
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>`,
-  )
-  await fsp.writeFile(pathHTML, dataStr, encodingOpts)
+    <noscript>You need to enable JavaScript to run this app.</noscript>`
+  return options.map
+    ? replacePrefix + maptalksDeps + replaceSuffix
+    : replacePrefix + replaceSuffix
 }
 
 const setAlias = async (directory: string, options: OptionValues) => {

@@ -11081,32 +11081,42 @@ var cleanTmplVite = async (directory, handleErr2) => {
 };
 var copyTmplCCRC = async (directory, options2, handleErr2) => {
   const folderBase = "template";
-  const isTS = options2.template.endsWith("-ts");
-  const folderChoose = folderBase + (isTS ? "-ts" : "-js");
+  let folderChoose = folderBase;
+  folderChoose += options2.template.endsWith("-ts") ? "-ts" : "-js";
+  if (options2.map)
+    folderChoose += "-map";
   await Promise.all([
-    improveHTML(directory),
+    improveHTML(directory, options2),
     import_fs_extra.default.copy(import_path.default.join(ccrcTmplPath, folderBase), directory, handleErr2),
     import_fs_extra.default.copy(import_path.default.join(ccrcTmplPath, folderChoose), directory, handleErr2),
     setAlias(directory, options2)
   ]);
 };
-var improveHTML = async (directory) => {
+var improveHTML = async (directory, options2) => {
   const pathHTML = import_path.default.join(directory, "index.html");
   const result = await import_promises.default.readFile(pathHTML, encodingOpts);
-  const dataStr = result.replace(
-    /<html[\s\S]*<body>/,
-    `<html lang="zh-cmn-Hans">
+  const dataStr = result.replace(/<html[\s\S]*<body>/, getHTMLBody(options2));
+  await import_promises.default.writeFile(pathHTML, dataStr, encodingOpts);
+};
+var getHTMLBody = (options2) => {
+  const replacePrefix = `<html lang="zh-cmn-Hans">
   <head>
-    <meta charset="utf-8" />
+    <meta charset="UTF-8" />
     <link rel="icon" href="/favicon.ico" />
     <meta name="author" content="cXiaof" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>CCRC-APP</title>
+    <title>CCRC-APP</title>`;
+  const maptalksDeps = `
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/maptalks/dist/maptalks.css"
+    />
+    <script src="https://unpkg.com/maptalks/dist/maptalks.min.js"></script>`;
+  const replaceSuffix = `
   </head>
   <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>`
-  );
-  await import_promises.default.writeFile(pathHTML, dataStr, encodingOpts);
+    <noscript>You need to enable JavaScript to run this app.</noscript>`;
+  return options2.map ? replacePrefix + maptalksDeps + replaceSuffix : replacePrefix + replaceSuffix;
 };
 var setAlias = async (directory, options2) => {
   const isTS = options2.template.endsWith("-ts");

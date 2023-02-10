@@ -24,7 +24,7 @@ npm install -g create-cxiaof-react-cli
 > **-t, --template \<preset>** Vite 模板 (default: "react-ts")  
 > **-m, --manager \<management>** 包管理器 (default: "pnpm")  
 > **-no, --noinstall** 不安装依赖  
-> **[todo]** -map, --map 创建为地图项目  
+> **-map, --map** 创建为地图项目  
 > **-h, --help** display help for command
 
 example
@@ -48,12 +48,10 @@ ccrc youre_project_name --noinstall
 # or
 ccrc youre_project_name -no
 
-# ---[todo]---
 # 创建为地图项目
 ccrc youre_project_name --map
 # or
 ccrc youre_project_name -map
-# ------------
 
 # 使用所有参数
 ccrc youre_project_name -t react -m yarn -map -no
