@@ -11101,7 +11101,7 @@ var setAlias = async (directory, options2, handleErr2) => {
       ...tsConfigJSON.compilerOptions,
       ...tmplConfigJSON.compilerOptions
     };
-    await import_promises.default.writeFile(pathConfigTS, JSON.stringify(tsConfigJSON));
+    await import_promises.default.writeFile(pathConfigTS, JSON.stringify(tsConfigJSON, null, 2));
   } else {
     const pathConfigJS = import_path.default.join(directory, "jsconfig.json");
     await import_promises.default.copyFile(pathConfigTmpl, pathConfigJS);
@@ -11136,7 +11136,7 @@ var mergeCCRCPkgJSON = async (name2) => {
     ...prjPkgJSON.devDependencies,
     ...devDependencies
   };
-  await import_fs_extra.default.writeFile(pathPkgJSON, JSON.stringify(prjPkgJSON));
+  await import_fs_extra.default.writeFile(pathPkgJSON, JSON.stringify(prjPkgJSON, null, 2));
 };
 var clone_default = cloneTmpl;
 
@@ -11602,6 +11602,14 @@ var showTips = (name2, options2) => {
   );
   const cd = source_default.magenta("cd ") + source_default.cyan(name2) + source_default.magenta(";");
   const manager = source_default.cyan(options2.manager);
+  if (options2.noinstall) {
+    return console.log(
+      source_default.yellow("\u5B89\u88C5\u4F9D\u8D56:"),
+      cd,
+      manager,
+      source_default.magenta("install")
+    );
+  }
   console.log(source_default.yellow("\u68C0\u67E5\u66F4\u65B0:"), cd, manager, source_default.magenta("outdated"));
   console.log(source_default.yellow("\u5FEB\u901F\u5F00\u59CB:"), cd, manager, source_default.magenta("dev"));
 };
