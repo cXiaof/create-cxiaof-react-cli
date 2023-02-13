@@ -29,11 +29,11 @@ type GeoJSONGeometry = {
   coordinates: Coordinates
 }
 
-type Feature = {
+type Feature<T = Obj> = {
   id?: Id
   type: 'Feature'
   geometry: GeoJSONGeometry
-  properties: Obj | null
+  properties: T | null
   symbol?: Obj | Obj[]
 }
 
@@ -43,7 +43,6 @@ type FeatureCollection = {
 }
 
 type Relation = 0 | 1 | 2 | 3 | 4 | 5 | 100 | 101 | 102
-
 type CrsString = 'GCJ02' | 'BD09LL' | 'WGS84'
 
 type SpatialFilter = {
