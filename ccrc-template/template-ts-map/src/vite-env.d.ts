@@ -24,6 +24,9 @@ type Id = string | number
 type Position = number[]
 type Coordinates = Position | Position[] | Position[][] | Position[][][]
 
+type Relation = 0 | 1 | 2 | 3 | 4 | 5 | 100 | 101 | 102
+type CrsString = 'GCJ02' | 'BD09LL' | 'WGS84'
+
 type GeoJSONGeometry = {
   type: string
   coordinates: Coordinates
@@ -41,9 +44,6 @@ type FeatureCollection = {
   type: 'FeatureCollection'
   features: Feature[]
 }
-
-type Relation = 0 | 1 | 2 | 3 | 4 | 5 | 100 | 101 | 102
-type CrsString = 'GCJ02' | 'BD09LL' | 'WGS84'
 
 type SpatialFilter = {
   geometry: GeoJSONGeometry
