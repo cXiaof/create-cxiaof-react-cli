@@ -38,7 +38,7 @@ export const removeLayer = (layerName: string | string[], map = window.map) => {
     layerName,
     map,
     (layer) => layer.remove(),
-    (name) => removeLayerFromGroup(name),
+    (name) => removeLayerFromGroup(name, map),
   )
 }
 
@@ -65,7 +65,7 @@ export const addLayerToGroup = (layer: any, map = window.map) => {
   let group = map.getLayer($$.GroupGL)
   if (!group) {
     const newLayerAttr = { layerName: $$.GroupGL, type: 'GroupGL' }
-    group = getNewLayer(newLayerAttr).addTo(map).bringToBack()
+    group = getNewLayer(newLayerAttr, map).addTo(map).bringToBack()
   }
   utils.items.packAttrToArr(layer, (item) => {
     removeLayerFromGroup(item.getId(), map)
