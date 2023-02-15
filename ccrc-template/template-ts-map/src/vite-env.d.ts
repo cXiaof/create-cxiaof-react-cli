@@ -32,11 +32,11 @@ type GeoJSONGeometry = {
   coordinates: Coordinates
 }
 
-type Feature<T = Obj> = {
+type Feature<T = Obj | null> = {
   id?: Id
   type: 'Feature'
   geometry: GeoJSONGeometry
-  properties: T | null
+  properties: T
   symbol?: Obj | Obj[]
 }
 
