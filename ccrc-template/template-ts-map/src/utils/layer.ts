@@ -86,8 +86,8 @@ export const removeLayerFromGroup = (
 }
 
 export const removeGeoById = (
-  geoId: string | number,
   layerName: string,
+  geoId: FeatureID,
   map = window.map,
 ) => {
   getLayer(layerName, map)?.getGeometryById(geoId)?.remove()

@@ -105,3 +105,8 @@ npm unlink create-cxiaof-react-cli -g
    └─template-ts                            // ts版本模版文件
       └...                                  //
 ```
+
+### TODO LIST
+
+- [ ] 默认携带 component **ErrorBoundary**
+- [ ] 克隆模板时改为目录覆盖以消除冗余

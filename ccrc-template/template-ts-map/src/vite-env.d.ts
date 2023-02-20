@@ -20,7 +20,7 @@ interface Number {
 }
 
 // maptalks
-type Id = string | number
+type FeatureID = string | number
 type Position = number[]
 type Coordinates = Position | Position[] | Position[][] | Position[][][]
 
@@ -33,7 +33,7 @@ type GeoJSONGeometry = {
 }
 
 type Feature<T = Obj | null> = {
-  id?: Id
+  id?: FeatureID
   type: 'Feature'
   geometry: GeoJSONGeometry
   properties: T
