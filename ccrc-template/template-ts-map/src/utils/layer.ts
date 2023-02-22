@@ -85,12 +85,19 @@ export const removeLayerFromGroup = (
   }
 }
 
+export const removeGeosSameLayer = (geos: any) => {
+  if (!geos) return
+  const [firstGeo] = utils.items.packAttrToArr(geos)
+  if (!firstGeo) return
+  firstGeo.getLayer().removeGeometry(geos)
+}
+
 export const removeGeoById = (
   layerName: string,
   geoId: FeatureID,
-  map = window.map,
+  map: any,
 ) => {
-  getLayer(layerName, map)?.getGeometryById(geoId)?.remove()
+  removeGeosSameLayer(getLayer(layerName, map)?.getGeometryById(geoId))
 }
 
 const newLayerSwitchType = (attr: NewLayerOpts) => {
