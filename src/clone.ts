@@ -87,7 +87,7 @@ const setAlias = async (directory: string, options: OptionValues) => {
     const pathConfigTS = path.join(directory, 'tsconfig.json')
     const [tmplConfigJSON, tsConfigJSON] = await Promise.all([
       fs.readJson(pathConfigTmpl),
-      fs.readJson(pathConfigTS),
+      readJsonSave(pathConfigTS),
     ])
     tsConfigJSON.compilerOptions = {
       ...tsConfigJSON.compilerOptions,
@@ -113,6 +113,12 @@ const setAlias = async (directory: string, options: OptionValues) => {
 })
 `
   await fsp.writeFile(pathConfigVite, dataStr, encodingOpts)
+}
+
+const readJsonSave = async (path: string) => {
+  const jsonStr = (await fsp.readFile(path, encodingOpts)) as string
+  const jsonStrSave = jsonStr.replace(/\s*\/\*.*\*\//g, '')
+  return JSON.parse(jsonStrSave)
 }
 
 const mergeCCRCPkgJSON = async (name: string) => {
